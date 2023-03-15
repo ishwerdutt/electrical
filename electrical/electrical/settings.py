@@ -121,7 +121,7 @@ TIME_ZONE = "UTC"
 USE_I18N = True
 
 USE_TZ = True
-CSRF_COOKIE_SECURE  = True
+
 CSRF_TRUSTED_ORIGINS = ['https://electrical-production.up.railway.app']
 
 
