@@ -18,4 +18,7 @@ urlpatterns = [
     path('pfs/', views.pflist, name='pflist'),
     path('alumnies/', views.allist, name='allist'),
     path('create_post/', views.create_post , name='create_post'),
+
+
+    # hetymnjhbgvfc
 ]
