@@ -8,6 +8,7 @@ class CustomUser(AbstractUser):
     is_alumni = models.BooleanField(default=False)
     is_faculty = models.BooleanField(default=False)
     username = models.CharField(max_length = 20, unique = True, null=True)
+    name = models.CharField(max_length = 20, unique = True, null=True)
     bio = models.TextField()
     company = models.TextField(null = True)
     subjects = models.CharField(max_length=50)

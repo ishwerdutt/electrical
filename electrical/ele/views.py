@@ -97,10 +97,6 @@ def allist(request):
 
 
 
-class AddPostView(CreateView):
-    model = Post
-    template_name = 'ele/add_post.html'
-    fields = '__all__'
 
 
 

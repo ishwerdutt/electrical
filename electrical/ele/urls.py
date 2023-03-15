@@ -1,7 +1,7 @@
 from django.urls import path
 from . import views
 from django.contrib.auth.views import LoginView
-from .views import signup, AddPostView, CustomLoginView, alumni_profile, faculty_profile
+from .views import signup,CustomLoginView, alumni_profile, faculty_profile
 from django.contrib.auth import views as auth_views
 
 urlpatterns = [
@@ -20,5 +20,5 @@ urlpatterns = [
     path('create_post/', views.create_post , name='create_post'),
 
 
-    # hetymnjhbgvfc
+
 ]
