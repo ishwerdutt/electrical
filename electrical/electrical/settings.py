@@ -122,9 +122,7 @@ USE_I18N = True
 
 USE_TZ = True
 CSRF_COOKIE_SECURE  = True
-CSRF_TRUSTED_ORIGINS = [
-    'https://electrical'
-]
+CSRF_TRUSTED_ORIGINS = ['electrical-production.up.railway.app','https://*.127.0.0.1']
 
 
 # Static files (CSS, JavaScript, Images)
