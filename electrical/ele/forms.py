@@ -27,4 +27,4 @@ class LoginForm(forms.Form):
 class CustomUserCreationForm(UserCreationForm):
     class Meta:
         model = CustomUser
-        fields = ('username', 'email','password1', 'password2', 'is_alumni', 'is_faculty', 'bio', 'company', 'subjects', 'profile_image')
+        fields = ('username', 'email','name','bio','role' ,'company', 'subjects', 'profile_image')

@@ -1,6 +1,6 @@
 from django.shortcuts import render, redirect, get_object_or_404
 from django.http import HttpResponse
-from .models import Post, CustomUser
+from .models import Post, CustomUser, RoleChoices
 from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
 from django.contrib.auth import authenticate, login
 from .forms import CustomUserCreationForm, PostForm
@@ -19,27 +19,25 @@ def acedemics(request):
     return render(request, 'ele/acedemics.html')
 
 
-def up(request):
-    return render(request, 'ele/up.html')
+def under_gradutae_programmes(request):
+    return render(request, 'ele/undergraduate_programmes.html')
 
 
-def Articles(request):
-    faculty_posts = Post.objects.filter(author_role='faculty')
-    print(faculty_posts)
+class AlumniPostListView(ListView):
+    model = Post
+    template_name = 'ele/post_list.html'
 
-    context = {'faculty_posts': faculty_posts}
-    return render(request, 'ele/articles.html', context)
+    def get_queryset(self):
+        alumni_users = CustomUser.objects.filter(role=RoleChoices.ALUMNI.value)
+        return Post.objects.filter(author__in=alumni_users)
 
+class FacultyPostListView(ListView):
+    model = Post
+    template_name = 'ele/post_list.html'
 
-
-def post(request):
-    alumni_posts = Post.objects.filter(author_role='alumni')
-    print(alumni_posts)
-    
-
-    context = {'alumni_posts': alumni_posts}
-    return render(request, 'ele/alumni_post.html', context)
-
+    def get_queryset(self):
+        faculty_users = CustomUser.objects.filter(role=RoleChoices.FACULTY.value)
+        return Post.objects.filter(author__in=faculty_users)
 
 
 def signup(request):
@@ -58,28 +56,32 @@ class CustomLoginView(LoginView):
     def get_success_url(self):
         user = self.request.user
         if user.is_authenticated:
-            if user.is_alumni:
+            if user.role == RoleChoices.ALUMNI.value:
                 return reverse('alumni_profile', kwargs={'username': user.username})
-            elif user.is_faculty:
+            if user.role == RoleChoices.FACULTY.value:
                 return reverse('faculty_profile', kwargs={'username': user.username})
+            if user.is_superuser:
+                return reverse('index')
         return '/'
 
 @login_required
 def alumni_profile(request, username):
-    user = get_object_or_404(CustomUser, username=username, is_alumni=True)
+    user = get_object_or_404(CustomUser, username=username, role = RoleChoices.ALUMNI.value)
     posts = Post.objects.filter(author=user)
     return render(request, 'ele/profile.html', {'user': user, 'posts': posts})
 
 @login_required
 def faculty_profile(request, username):
-    user = get_object_or_404(CustomUser, username=username, is_faculty=True)
+    user = get_object_or_404(CustomUser, username=username, role = RoleChoices.FACULTY.value)
     posts = Post.objects.filter(author=user)
-    return render(request, 'ele/pf_profile.html', {'user': user, 'posts': posts})
+    return render(request, 'ele/profile.html', {'user': user, 'posts': posts})
+
+
 
 
 
 def pflist(request):
-    pfs = CustomUser.objects.filter(is_faculty=True)
+    pfs = CustomUser.objects.filter(role = RoleChoices.FACULTY.value)
     context = {
         'pfs': pfs,
 
@@ -88,15 +90,12 @@ def pflist(request):
 
 
 def allist(request):
-    alumnies = CustomUser.objects.filter(is_alumni=True)
+    alumnies = CustomUser.objects.filter(role = RoleChoices.ALUMNI.value)
     context = {
         'alumnies': alumnies,
 
     }
     return render(request, 'ele/alumnies.html', context)
-
-
-
 
 
 
@@ -107,16 +106,19 @@ def create_post(request):
         if form.is_valid():
             post = form.save(commit=False)
             post.author = request.user
-            username = request.user.username
-            if request.user.is_alumni:
-                post.author_role = 'alumni'
+            if post.author.role == RoleChoices.ALUMNI.value:
                 post.save()
-                return redirect('alumni_profile', username)
-            elif request.user.is_faculty:
-                post.author_role = 'faculty'
+                return redirect('alumni_profile', username = post.author)
+            elif post.author.role == RoleChoices.FACULTY.value:
                 post.save()
-                return redirect('faculty_profile', username)
-            
+                return redirect('faculty_profile', username = post.author)
+            elif post.author.is_superuser:
+                post.save()
+                return reverse('index')
+            return redirect('index')
+        else:
+            pass
     else:
         form = PostForm()
     return render(request, 'ele/add_post.html', {'form': form})
+

@@ -2,18 +2,19 @@
 
 {% block content %}
 
+<h1 class="text-4xl font-bold mb-8 text-center text-gray-800">Add Post</h1>
 
-<h1>Add post.....</h1>
-
-
-<div class="form-group">
-    <form method="post">
-
+<div class="max-w-lg mx-auto bg-white p-8 rounded-lg shadow-md">
+    <form method="post" class="space-y-4">
 
         {% csrf_token %}
         {{ form.as_p }}
-        <button class="btn btn-secondary">Post</button>
 
+        <div class="flex justify-end">
+            <button class="bg-indigo-500 hover:bg-indigo-600 text-white font-bold py-2 px-4 rounded">
+                Post
+            </button>
+        </div>
     </form>
 </div>
 
