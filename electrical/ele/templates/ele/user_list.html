@@ -1,0 +1,81 @@
+{% extends 'ele/base.html' %}
+
+{% block title %}
+
+posts
+
+
+{% endblock %}
+
+
+{% block content %}
+
+
+
+{% if request.resolver_match.url_name == 'alumni_list' %}
+<div class="container mx-auto p-4" style="background-color: #f5f5f5; color: #333; font-family: Arial, sans-serif;">
+    <h1 class="text-4xl font-bold mb-4">List of Alumniess</h1>
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
+        {% for alumni in users %}
+        <div class="card shadow-lg p-4" style="background-color: #fff;">
+            {% if alumni.profile_image %}
+            <img src="{{ alumni.profile_image.url }}"class="w-32 h-32 rounded-full mr-4" alt="{{ faculty.name }}">
+            {% endif %}      
+            <div class="card-body">
+                <h5 class="card-title text-xl font-semibold"><a href="#" style="color: #333;">{{ alumni.username }}</a></h5>
+                <p class="card-text text-gray-600">Subjects: {{ alumni.company }}</p>
+                <p class="card-text text-gray-600">Email: {{ alumni.email }}</p>
+                
+            </div>
+        </div>
+        
+        {% endfor %}
+    </div>
+</div>
+{% elif request.resolver_match.url_name == 'faculty_list' %}
+
+<div class="container mx-auto p-4">
+    <h1 class="text-4xl font-bold mb-4">Professors</h1>
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+        {% for pf in users %}
+        
+        <div class="card shadow-lg">
+            {% if pf.profile_image %}
+            <img src="{{ pf.profile_image.url }}"class="w-32 h-32 rounded-full mr-4" alt="{{ pf.name }}">
+            {% endif %}            
+            <div class="card-body">
+                <h5 class="card-title text-xl font-semibold"><a href="#"></a>{{ pf.username }}</a></h5>
+                <p class="card-text text-gray-600">Subjects:-{{ pf.subjects }}</p>
+                <p class="card-text text-gray-600">Email:-{{ pf.email }}</p>
+                
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+
+
+{% else %}
+<div class="container mx-auto p-4">
+    <h1 class="text-4xl font-bold mb-4">users</h1>
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+        {% for user in users %}
+        
+        <div class="card shadow-lg">
+            {% if user.profile_image %}
+            <img src="{{ user.profile_image.url }}"class="w-32 h-32 rounded-full mr-4" alt="{{ user.name }}">
+            {% endif %}            
+            <div class="card-body">
+                <h5 class="card-title text-xl font-semibold"><a href="#"></a>{{ user.username }} - {{ user.role }}</a></h5>
+                <p class="card-text text-gray-600">Subjects:-{{ user.subjects }}</p>
+                <p class="card-text text-gray-600">Email:-{{ user.email }}</p>
+                
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+
+{% endif %}
+
+{% endblock %}

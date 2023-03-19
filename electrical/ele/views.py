@@ -11,6 +11,7 @@ from django.http import HttpResponseRedirect
 from django.contrib.auth import get_user_model
 from django.contrib.auth.decorators import login_required
 from django.contrib import messages
+from django.http import Http404
 
 def index(request):
     return render(request, 'ele/index.html')
@@ -21,6 +22,7 @@ def acedemics(request):
 
 def under_gradutae_programmes(request):
     return render(request, 'ele/undergraduate_programmes.html')
+
 
 
 class AlumniPostListView(ListView):
@@ -38,6 +40,7 @@ class FacultyPostListView(ListView):
     def get_queryset(self):
         faculty_users = CustomUser.objects.filter(role=RoleChoices.FACULTY.value)
         return Post.objects.filter(author__in=faculty_users)
+    
 
 
 def signup(request):
@@ -57,45 +60,45 @@ class CustomLoginView(LoginView):
         user = self.request.user
         if user.is_authenticated:
             if user.role == RoleChoices.ALUMNI.value:
-                return reverse('alumni_profile', kwargs={'username': user.username})
+                return reverse('user_profile', kwargs={'username': user.username})
             if user.role == RoleChoices.FACULTY.value:
-                return reverse('faculty_profile', kwargs={'username': user.username})
+                return reverse('user_profile', kwargs={'username': user.username})
             if user.is_superuser:
                 return reverse('index')
         return '/'
 
-@login_required
-def alumni_profile(request, username):
-    user = get_object_or_404(CustomUser, username=username, role = RoleChoices.ALUMNI.value)
-    posts = Post.objects.filter(author=user)
-    return render(request, 'ele/profile.html', {'user': user, 'posts': posts})
+
 
 @login_required
-def faculty_profile(request, username):
-    user = get_object_or_404(CustomUser, username=username, role = RoleChoices.FACULTY.value)
-    posts = Post.objects.filter(author=user)
-    return render(request, 'ele/profile.html', {'user': user, 'posts': posts})
+def user_profile(request, username):
+    user = get_object_or_404(CustomUser, username=username)
+    if user.role == RoleChoices.ALUMNI.value:
+        posts = Post.objects.filter(author=user)
+        return render(request, 'ele/profile.html', {'user': user, 'posts': posts})
+    elif user.role == RoleChoices.FACULTY.value:
+        posts = Post.objects.filter(author=user)
+
+        return render(request, 'ele/profile.html', {'user': user, 'posts':posts})
+    else:
+        return HttpResponse('Invalid user role')
 
 
 
+class UserListView(ListView):
+    model = CustomUser
+    template_name = 'ele/user_list.html'
+    context_object_name = 'users'
 
+    def get_queryset(self):
+        role = self.kwargs.get('role')
+        if role == 'Faculty':
+            queryset = CustomUser.objects.filter(role=RoleChoices.FACULTY.value)
+        elif role == 'Alumni':
+            queryset = CustomUser.objects.filter(role=RoleChoices.ALUMNI.value)
+        else:
+            queryset = CustomUser.objects.all()
+        return queryset
 
-def pflist(request):
-    pfs = CustomUser.objects.filter(role = RoleChoices.FACULTY.value)
-    context = {
-        'pfs': pfs,
-
-    }
-    return render(request, 'ele/pf.html', context)
-
-
-def allist(request):
-    alumnies = CustomUser.objects.filter(role = RoleChoices.ALUMNI.value)
-    context = {
-        'alumnies': alumnies,
-
-    }
-    return render(request, 'ele/alumnies.html', context)
 
 
 
@@ -106,18 +109,8 @@ def create_post(request):
         if form.is_valid():
             post = form.save(commit=False)
             post.author = request.user
-            if post.author.role == RoleChoices.ALUMNI.value:
-                post.save()
-                return redirect('alumni_profile', username = post.author)
-            elif post.author.role == RoleChoices.FACULTY.value:
-                post.save()
-                return redirect('faculty_profile', username = post.author)
-            elif post.author.is_superuser:
-                post.save()
-                return reverse('index')
-            return redirect('index')
-        else:
-            pass
+            post.save()
+            return redirect('user_profile', username = post.author)
     else:
         form = PostForm()
     return render(request, 'ele/add_post.html', {'form': form})
