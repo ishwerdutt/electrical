@@ -12,18 +12,59 @@ undergraduate programms
 
 
 {% block content %}
+<br>
+<br>
 
-<div class="container mx-auto p-4">
-        <div class="p-4">
-          <h2 class="text-2xl font-semibold text-gray-800">Bachelor of Technology (B.S.)</h2>
-          <p class="text-gray-600 mt-2">The B.Tech. program provides a solid foundation in electrical engineering principles and applications, as well as mathematics, physics, and general education. Students can choose from various technical electives to specialize in areas such as electronics, power systems, communications, or signal processing.</p>
-          <a href="#" class="inline-block bg-blue-600 text-white px-4 py-2 mt-4 rounded">Learn more</a>
+
+<div class="container p-6 rounded-lg shadow-lg mx-auto p-4">
+  <div class="h-screen flex overflow-hidden bg-gray-100">
+    <nav class="flex flex-col bg-blue-800 pt-5">
+      <nav class="flex flex-col bg-blue-800 pt-5 pb-4">
+        <div class="flex items-center flex-shrink-0 px-4">
+          <img class="h-8 w-auto rounded-full mx-auto block" src="\media\images\download.png" alt="Logo">
         </div>
-      </div>
-
+        <div class="mt-5 flex-1 flex flex-col">
+          <a href="#" class="text-white hover:bg-gray-700 py-2 px-4 rounded">
+            Vision And Mission
+          </a>
+          <a href="#" class="text-gray-400 hover:text-white hover:bg-gray-700 py-2 px-4 rounded">
+            Faculty
+          </a>
+          <a href="#" class="text-gray-400 hover:text-white hover:bg-gray-700 py-2 px-4 rounded">
+            Staff
+          </a>
+          <a href="#" class="text-gray-400 hover:text-white hover:bg-gray-700 py-2 px-4 rounded">
+            Labs
+          </a>
+          <a href="#" class="text-gray-400 hover:text-white hover:bg-gray-700 py-2 px-4 rounded">
+            Research Publications
+          </a>
+          <a href="#" class="text-gray-400 hover:text-white hover:bg-gray-700 py-2 px-4 rounded">
+            Contact
+          </a>
+        </div>
+      </nav>
+      
+    </nav>
+    <div class="p-4 bg-gradient-to-br from-Cyan-800 to-gray-900 p-6 shadow-lg">
+      <h2 class="text-2xl font-semibold text-gray-900">Bachelor of Technology (B.Tech.)</h2>
+      <p class="text-gray-500 mt-2">The B.Tech. program provides a solid foundation in electrical engineering principles and applications, as well as mathematics, physics, and general education. Students can choose from various technical electives to specialize in areas such as electronics, power systems, communications, or signal processing.</p>
+      <a href="#" class="inline-block bg-blue-600 text-white px-4 py-2 mt-4 rounded">Learn more</a>
     </div>
   </div>
 
+</div>
+</div>
+  
+<style>
+  @media (min-width: 640px) {
+  .sidebar {
+    flex: 0 0 20%;
+    max-width: 20%;
+  }
+}
 
+</style>
+        
 
 {% endblock %}

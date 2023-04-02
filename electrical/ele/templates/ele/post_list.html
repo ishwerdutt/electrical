@@ -1,81 +1,60 @@
-
 {% extends 'ele/base.html' %}
 
 {% block title %}
-
-posts
-
-
+  Testimonials
 {% endblock %}
-
 
 {% block content %}
 
-
-
 {% if request.resolver_match.url_name == 'alumni_posts' %}
-<div class="container mx-auto px-4 py-8">
-    <div class="max-w-md mx-auto bg-white rounded-xl shadow-md overflow-hidden md:max-w-2xl">
-      <div class="md:flex">
-        <div class="md:flex-shrink-0">
-          <img class="h-48 w-full object-cover md:w-48" src="https://source.unsplash.com/random/800x600" alt="College image">
-        </div>
-        <div class="p-8">
-          <div class="uppercase tracking-wide text-sm text-indigo-500 font-semibold">Testimonials</div>
-          <p class="mt-2 text-gray-500">Welcome to our testimonial page, where you can hear from real students who have studied at our college and achieved their academic and personal goals. Testimonials are a powerful way to showcase the quality of our education, the diversity of our student body, and the impact of our alumni. Whether you are looking for a testimonial that relates to your program of interest, your career aspirations, or your cultural background, you can find it here. Browse through our testimonials and discover why our college is the right choice for you!</p>
-          <a href="#" class="block mt-4 text-indigo-700 font-bold hover:underline">Read more testimonials</a>
-        </div>
+  <div class="container mx-auto px-4 py-8">
+    <div class="max-w-4xl mx-auto">
+      <h1 class="text-4xl font-bold text-gray-800 text-center mb-8">Testimonials</h1>
+      <p class="text-lg text-gray-600 mb-8 text-center">Welcome to our testimonial page, where you can hear from real students who have studied at our college and achieved their academic and personal goals. Testimonials are a powerful way to showcase the quality of our education, the diversity of our student body, and the impact of our alumni. Whether you are looking for a testimonial that relates to your program of interest, your career aspirations, or your cultural background, you can find it here. Browse through our testimonials and discover why our college is the right choice for you!</p>     
+      <!-- Create a grid layout for the testimonials -->
+      <div id="alumni-carousel" class="slick-carousel">
+        {% for post in object_list %}
+          {% if post.author.role == 'Alumni' %}
+            <div class="card1 p-6 rounded-lg shadow-lg rounded-lg border border-blue-400">
+              
+              <h2 class="text-lg text-blue-600 font-semibold text-center">{{post.author}}</h2>
+              <p class="text-sm text-green-600 font-semibold text-center mb-2">Working at {{ post.author.company }}</p>
+              <p class="text-sm text-gray-800 mb-4">{{ post.content|safe }}</p>
+            </div>
+          {% endif %}
+        {% endfor %}
       </div>
     </div>
-    <br>
-    <br>
-    <!-- Create a grid layout for the testimonials -->
-    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-
-    {% for post in object_list %}
-        {% if post.author.role == 'Alumni' %}
-        <div class="card bg-white shadow-lg p-6 rounded-lg">
-            {% if post.author.profile_image %}
-            <img src="{{ post.author.profile_image.url }}" alt="Avatar" class="w-32 h-32 rounded-full mr-4">
-            {% endif %}
-            <h2 class = "text-xl font-semibold text-center">{{ post.title }}</h2>
-            <h2 class="text-xl font-semibold text-center">Author:-{{post.author}}</h2>
-            <p class="text-gray-500 text-center">Working at {{ post.author.company }}</p>
-            <p class="text-gray-700 mt-4 italic">"{{ post.content|safe }}"</p>
-        {% endif %}
-        </div>
-    {% endfor %}
-    </div>
-
+  </div>
 {% else %}
-<div class="container mx-auto px-4 py-8">
-    <div class="max-w-md mx-auto bg-white rounded-xl shadow-md overflow-hidden md:max-w-2xl">
+  <div class="container mx-auto px-4 py-8">
+    <div class="max-w-4xl mx-auto bg-gray-200 rounded-xl shadow-md overflow-hidden">
       <div class="md:flex">
         <div class="md:flex-shrink-0">
-          <img class="h-48 w-full object-cover md:w-48" src="https://source.unsplash.com/random/800x600" alt="College image">
+          <img class="h-full w-full object-cover md:w-48" src="https://source.unsplash.com/random/800x600" alt="College image">
         </div>
         <div class="p-8">
-          <div class="uppercase tracking-wide text-sm text-indigo-500 font-semibold">Testimonials</div>
-          <p class="mt-2 text-gray-500">Welcome to our testimonial page, where you can hear from real students who have studied at our college and achieved their academic and personal goals. Testimonials are a powerful way to showcase the quality of our education, the diversity of our student body, and the impact of our alumni. Whether you are looking for a testimonial that relates to your program of interest, your career aspirations, or your cultural background, you can find it here. Browse through our testimonials and discover why our college is the right choice for you!</p>
-          <a href="#" class="block mt-4 text-indigo-700 font-bold hover:underline">Read more testimonials</a>
+          <div class="uppercase tracking-wide text-sm text-indigo-500 font-semibold">Articles</div>
+          <h1 class="text-4xl font-bold text-gray-800 mb-4">Welcome to our Articles page</h1>
+          <p class="text-lg text-gray-600 mb-8">Here you can hear from real students who have studied at our college and achieved their academic and personal goals. Testimonials are a powerful way to showcase the quality of our education, the diversity of our student body, and the impact of our alumni. Whether you are looking for a testimonial that relates to your program of interest, your career aspirations, or your cultural background, you can find it here. Browse through our testimonials and discover why our college is the right choice for you!</p>
+          <a href="#" class="block text-lg text-indigo-700 font-bold hover:underline mb-8">Read more testimonials</a>
         </div>
       </div>
     </div>
-    <br>
-    <br>
-
-    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+  </div>
+    
+  <div class="grid grid-cols-2 md:grid-cols-2 lg:grid-cols-3 gap-6">
 
     {% for post in object_list %}
         {% if post.author.role == 'Faculty' %}
-        <div class="card bg-white shadow-lg p-6 rounded-lg">
+        <div class="card bg-white shadow-lg p-7 rounded-lg">
             {% if post.author.profile_image %}
-            <img src="{{ post.author.profile_image.url }}" alt="Avatar" class="w-32 h-32 rounded-full mr-4">
+            <img src="{{ post.author.profile_image.url }}" alt="Avatar" class="w-33 h-32 rounded-full mr-4">
             {% endif %}
 
-            <h2 class = "text-xl font-semibold text-center">{{ post.title }}</h2>
-            <h2 class="text-l font-semibold text-center">Author:-{{post.author}}</h2>
-            <p class="text-gray-700 mt-4 italic">"{{ post.content|safe }}"</p>
+            <h1 class = "text-xl font-semibold text-center">{{ post.title }}</h2>
+            <h1 class="text-l font-semibold text-center">Author:-{{post.author}}</h2>
+            <p class="text-gray-701 mt-4 italic">"{{ post.content|safe }}"</p>
             {% if post.document %}
                 <a href="{{ post.document.url }}">Download Document</a>
             {% endif %}
@@ -84,7 +63,270 @@ posts
     {% endfor %}
 </div>
 
+    
 {% endif %}
+
+{% block javascript %}
+<script src="https://cdn.jsdelivr.net/npm/jquery/dist/jquery.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/slick-carousel/slick/slick.min.js"></script>
+<script>
+  $(document).ready(function(){
+    $('#alumni-carousel').slick({
+      dots: true,
+      infinite: true,
+      speed: 500,
+      slidesToShow: 3,
+      slidesToScroll: 3,
+      responsive: [
+        {
+          breakpoint: 1024,
+          settings: {
+            slidesToShow: 2,
+            slidesToScroll: 2,
+            infinite: true,
+            dots: true
+          }
+        },
+        {
+          breakpoint: 600,
+          settings: {
+            slidesToShow: 1,
+            slidesToScroll: 1
+          }
+        },
+        {
+          breakpoint: 480,
+          settings: {
+            slidesToShow: 1,
+            slidesToScroll: 1
+          }
+        }
+      ]
+    });
+  });
+</script>
+{% endblock %}
+
+<style>
+.card1 {
+  transition: all 0.3s ease-in-out;
+  margin-block-end: 10px;
+  height: 5cm;
+  background-color: #fff;
+  border: 1px solid #e2e8f0;
+  box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+  border-radius: 0.5rem;
+}
+
+.card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+}
+
+#alumni-carousel {
+  margin-top: 4rem;
+  margin-bottom: 4rem;
+}
+
+.slick-dots li button:before {
+  color: #CBD5E0;
+  font-size: 0.875rem;
+  line-height: 1rem;
+}
+
+.slick-dots li.slick-active button:before {
+  color: #2D3748;
+}
+
+.slick-prev, .slick-next {
+  font-size: 0;
+  line-height: 0;
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 3rem;
+  height: 3rem;
+  background-color: #E2E8F0;
+  border-radius: 50%;
+  border: none;
+  z-index: 1;
+}
+
+.slick-prev:hover, .slick-next:hover {
+  background-color: #CBD5E0;
+  cursor: pointer;
+}
+
+.slick-prev {
+  left: -3rem;
+}
+
+.slick-next {
+  right: -3rem;
+}
+
+.slick-prev:before, .slick-next:before {
+  content: "";
+  display: block;
+  width: 1rem;
+  height: 1rem;
+  background-image: url('https://img.icons8.com/material-outlined/24/000000/chevron-left.png');
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.slick-next:before {
+  background-image: url('https://img.icons8.com/material-outlined/24/000000/chevron-right.png');
+}
+
+   /* Tailwind CSS classes */
+.slick-slider {
+  position: relative;
+  display: block;
+  box-sizing: border-box;
+  touch-action: pan-y;
+  user-select: none;
+  touch-action: pan-y;
+  -ms-touch-action: pan-y;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.slick-list {
+  position: relative;
+  display: block;
+  overflow: hidden;
+  margin: 0;
+  padding: 0;
+}
+
+.slick-track {
+  position: relative;
+  top: 0;
+  left: 0;
+  display: flex;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.slick-slide {
+  display: none;
+  float: left;
+  height: 100%;
+  min-height: 1px;
+}
+
+.slick-slide > div {
+  margin: 0 1rem;
+}
+
+.slick-initialized .slick-slide {
+  display: block;
+}
+
+.slick-loading .slick-slide {
+  visibility: hidden;
+}
+
+.slick-vertical .slick-slide {
+  display: block;
+  height: auto;
+  border: none;
+}
+
+.slick-arrow {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  display: block;
+  height: 3rem;
+  width: 3rem;
+  border-radius: 50%;
+  background-color: #e2e8f0;
+  border: none;
+  z-index: 1;
+}
+
+.slick-arrow:hover {
+  background-color: #cbd5e0;
+  cursor: pointer;
+}
+
+.slick-prev {
+  left: -3rem;
+}
+
+.slick-next {
+  right: -3rem;
+}
+
+.slick-prev:before, .slick-next:before {
+  content: "";
+  display: block;
+  width: 1rem;
+  height: 1rem;
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.slick-prev:before {
+  background-image: url('https://img.icons8.com/material-outlined/24/000000/chevron-left.png');
+}
+
+.slick-next:before {
+  background-image: url('https://img.icons8.com/material-outlined/24/000000/chevron-right.png');
+}
+
+.slick-dots {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.slick-dots li {
+  display: inline-block;
+  margin: 0 0.25rem;
+}
+
+.slick-dots li button {
+  display: block;
+  height: 1rem;
+  width: 1rem;
+  padding: 0;
+  border: none;
+  background-color: transparent;
+  cursor: pointer;
+  text-indent: -9999px;
+}
+
+.slick-dots li button:before {
+  content: "";
+  display: block;
+  height: 0.5rem;
+  width: 0.5rem;
+  border-radius: 50%;
+  background-color: #cbd5e0;
+  margin: 0 auto;
+  margin-top: 0.25rem;
+}
+
+.slick-dots li.slick-active button:before {
+  background-color: #2d3748;
+}
+
+  </style>
+  
+
 
 
 

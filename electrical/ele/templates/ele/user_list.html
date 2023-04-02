@@ -2,7 +2,7 @@
 
 {% block title %}
 
-posts
+user List
 
 
 {% endblock %}
@@ -13,19 +13,38 @@ posts
 
 
 {% if request.resolver_match.url_name == 'alumni_list' %}
-<div class="container mx-auto p-4" style="background-color: #f5f5f5; color: #333; font-family: Arial, sans-serif;">
-    <h1 class="text-4xl font-bold mb-4">List of Alumniess</h1>
+<div class="flex justify-center">
+    <div
+        class="flex flex-col rounded-lg bg-white shadow-lg dark:bg-neutral-700 md:max-w-xl md:flex-row">
+        <img
+        class="h-96 w-full rounded-t-lg object-cover md:h-auto md:w-48 md:rounded-none md:rounded-l-lg"
+        src="https://mdbootstrap.com/wp-content/uploads/2020/06/vertical.jpg"
+        alt="" />
+        <div class="flex flex-col justify-start p-6">
+        <h5
+        class="mb-2 text-xl font-medium text-neutral-800 dark:text-neutral-50">
+        Alumnies
+        </h5>
+        <p class="mb-4 text-base text-neutral-600 dark:text-neutral-200">
+            Alumni are an important part of any college community. They are the graduates who have completed their studies and have moved on to pursue their careers and other endeavors. They are the ambassadors of their alma mater and play a vital role in the growth and success of the college.
+        </p>
+        <p class="text-xs text-neutral-500 dark:text-neutral-300">
+        </p>
+    </div>
+    </div>
+</div>
+<div class="container mx-auto p-4">
+    <h1 class="text-4xl text-blue-600 font-bold mb-4">List of Alumnies</h1>
     <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
         {% for alumni in users %}
-        <div class="card shadow-lg p-4" style="background-color: #fff;">
+        <div class="card bg-gray-100 p-6 rounded-lg rounded-lg p-4 border border-blue-400">
             {% if alumni.profile_image %}
-            <img src="{{ alumni.profile_image.url }}"class="w-32 h-32 rounded-full mr-4" alt="{{ faculty.name }}">
+            <img src="{{ alumni.profile_image.url }}"class="w-32 h-32 rounded-full mx-auto block" alt="{{ alumni.name }}">
             {% endif %}      
             <div class="card-body">
-                <h5 class="card-title text-xl font-semibold"><a href="#" style="color: #333;">{{ alumni.username }}</a></h5>
-                <p class="card-text text-gray-600">Subjects: {{ alumni.company }}</p>
-                <p class="card-text text-gray-600">Email: {{ alumni.email }}</p>
-                
+                <h5 class="card-title text-xl bg-gradient-to-r from-blue-600 via-green-500 to-indigo-400 inline-block text-transparent bg-clip-text font-semibold">{{ alumni.name }}</h5>
+                <p class="card-text font-semibold text-gray-900">Placed at: {{ alumni.company }}</p>
+                <p class="card-text text-gray-900">Email: {{ alumni.email }}</p>
             </div>
         </div>
         
@@ -35,16 +54,16 @@ posts
 {% elif request.resolver_match.url_name == 'faculty_list' %}
 
 <div class="container mx-auto p-4">
-    <h1 class="text-4xl font-bold mb-4">Professors</h1>
-    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+    <h1 class="text-4xl text-blue-600 font-bold mb-4">Professors</h1>
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
         {% for pf in users %}
         
-        <div class="card shadow-lg">
+        <div class="card bg-gray-100 p-6 rounded-lg shadow-lg rounded-lg p-4">
             {% if pf.profile_image %}
-            <img src="{{ pf.profile_image.url }}"class="w-32 h-32 rounded-full mr-4" alt="{{ pf.name }}">
+            <img src="{{ pf.profile_image.url }}"class="w-32 h-32 rounded-full mx-auto block" alt="{{ pf.name }}">
             {% endif %}            
             <div class="card-body">
-                <h5 class="card-title text-xl font-semibold"><a href="#"></a>{{ pf.username }}</a></h5>
+                <h5 class="card-title text-green-500 text-xl font-semibold"><a href="#"></a>{{ pf.username }}</a></h5>
                 <p class="card-text text-gray-600">Subjects:-{{ pf.subjects }}</p>
                 <p class="card-text text-gray-600">Email:-{{ pf.email }}</p>
                 
@@ -57,25 +76,35 @@ posts
 
 {% else %}
 <div class="container mx-auto p-4">
-    <h1 class="text-4xl font-bold mb-4">users</h1>
-    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+    <h1 class="text-4xl text-blue-600 font-bold mb-4">users</h1>
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
         {% for user in users %}
         
-        <div class="card shadow-lg">
+        <div class="card bg-gray-100 p-6 rounded-lg shadow-lg rounded-lg p-4">
             {% if user.profile_image %}
-            <img src="{{ user.profile_image.url }}"class="w-32 h-32 rounded-full mr-4" alt="{{ user.name }}">
+            <img src="{{ user.profile_image.url }}"class="w-32 h-32 rounded-full mx-auto block" alt="{{ user.name }}">
             {% endif %}            
             <div class="card-body">
-                <h5 class="card-title text-xl font-semibold"><a href="#"></a>{{ user.username }} - {{ user.role }}</a></h5>
+                <h5 class="card-title text-green-500 text-xl font-semibold"><a href="{% url 'user_profile' username=user.username %}">{{ user.username }} - {{ user.role }}</a></h5>
                 <p class="card-text text-gray-600">Subjects:-{{ user.subjects }}</p>
                 <p class="card-text text-gray-600">Email:-{{ user.email }}</p>
                 
             </div>
         </div>
+    
+
         {% endfor %}
     </div>
 </div>
 
 {% endif %}
-
+<style>
+    .card {
+      box-shadow: 0px 2px 5px #6d28d9;
+      transition: all 0.3s ease-in-out;
+    }
+    .card:hover {
+      transform: translateY(-5px);
+    }
+  </style>
 {% endblock %}
