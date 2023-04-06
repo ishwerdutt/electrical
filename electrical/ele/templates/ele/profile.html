@@ -15,10 +15,14 @@
           <p class="text-lg text-gray-600 mt-4">About Me:- <p>{{ user.bio }}</p></p>
           {% if user.role == 'Alumni' %}
             <p class="text-lg text-gray-600 mt-4">Company: {{ user.company }}</p>
+             {% if user.is_authenticated %}
             <a class="mt-4 block px-4 py-2 text-white font-bold bg-blue-600 hover:bg-blue-700 rounded-lg" href="{% url 'create_post' %}">Add Testimonial</a>
+            {% endif %}
           {% elif user.role == 'Faculty' %}
             <p class="text-lg text-gray-600 mt-4">Subjects: {{ user.subjects }}</p>
+            {% if user.is_authenticated %}
             <a class="mt-4 block px-4 py-2 text-white font-bold bg-blue-600 hover:bg-blue-700 rounded-lg" href="{% url 'create_post' %}">Add Article</a>
+            {% endif %}
           {% endif %}
         </div>
       </div>

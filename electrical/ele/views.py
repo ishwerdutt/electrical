@@ -2,7 +2,7 @@ from django.shortcuts import render, redirect, get_object_or_404
 from django.http import HttpResponse
 from .models import Post, CustomUser, RoleChoices
 from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
-from django.contrib.auth import authenticate, login
+from django.contrib.auth import authenticate, login, logout
 from .forms import CustomUserCreationForm, PostForm
 from django.contrib.auth.views import LoginView
 from django.views.generic import ListView, CreateView
@@ -55,21 +55,24 @@ def signup(request):
 
 class CustomLoginView(LoginView):
     template_name = 'ele/loginpage.html'
+    success_url = '/'
 
     def get_success_url(self):
         user = self.request.user
         if user.is_authenticated:
             if user.role == RoleChoices.ALUMNI.value:
                 return reverse('user_profile', kwargs={'username': user.username})
-            if user.role == RoleChoices.FACULTY.value:
+            elif user.role == RoleChoices.FACULTY.value:
                 return reverse('user_profile', kwargs={'username': user.username})
-            if user.is_superuser:
+            elif user.is_superuser:
                 return reverse('index')
-        return '/'
+            else:
+                return super().get_success_url()
+        else:
+            return super().get_success_url()
 
 
-
-@login_required
+@login_required(login_url="login")
 def user_profile(request, username):
     user = get_object_or_404(CustomUser, username=username)
     if user.role == RoleChoices.ALUMNI.value:
@@ -81,7 +84,7 @@ def user_profile(request, username):
         return render(request, 'ele/profile.html', {'user': user, 'posts':posts})
     else:
         return HttpResponse('Invalid user role')
-
+    
 
 
 class UserListView(ListView):
@@ -102,7 +105,7 @@ class UserListView(ListView):
 
 
 
-@login_required
+@login_required(login_url="login")
 def create_post(request):
     if request.method == 'POST':
         form = PostForm(request.POST, request.FILES)
@@ -115,3 +118,9 @@ def create_post(request):
         form = PostForm()
     return render(request, 'ele/add_post.html', {'form': form})
 
+# logout view
+
+@login_required
+def logout_view(request):
+    logout(request)
+    return redirect('login')

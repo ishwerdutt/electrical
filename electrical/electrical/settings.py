@@ -24,7 +24,8 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = os.environ.get('DJANGO_SECRET_KEY', "django-insecure-ergwijf@1lufzv$lc$=)g5o&5)i=40$pzj%6rb(yf0gknox5)6")
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = os.environ.get('DJANGO_DEBUG', '') == 'True'
+#DEBUG = os.environ.get('DJANGO_DEBUG', '') == 'True'
+DEBUG = True
 ALLOWED_HOSTS = ['*']
 
 
@@ -72,6 +73,9 @@ TEMPLATES = [
 
 WSGI_APPLICATION = "electrical.wsgi.application"
 
+AUTHENTICATION_BACKENDS = [
+    'django.contrib.auth.backends.ModelBackend',
+]
 
 # Database
 # https://docs.djangoproject.com/en/4.1/ref/settings/#databases
@@ -92,6 +96,8 @@ else:
 
 # Password validation
 # https://docs.djangoproject.com/en/4.1/ref/settings/#auth-password-validators
+
+
 
 AUTH_PASSWORD_VALIDATORS = [
     {
@@ -138,4 +144,5 @@ MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 AUTH_USER_MODEL = "ele.CustomUser"
 LOGIN_REDIRECT_URL = "index"
+LOGOUT_REDIRECT_URL = "login"
 
