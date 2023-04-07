@@ -1,7 +1,7 @@
 {% extends 'ele/base.html' %}
 
 {% block title %}
-  Testimonials
+  Articles
 {% endblock %}
 
 {% block content %}
@@ -37,7 +37,7 @@
           <div class="uppercase tracking-wide text-sm text-indigo-500 font-semibold">Articles</div>
           <h1 class="text-4xl font-bold text-gray-800 mb-4">Welcome to our Articles page</h1>
           <p class="text-lg text-gray-600 mb-8">Here you can hear from real students who have studied at our college and achieved their academic and personal goals. Testimonials are a powerful way to showcase the quality of our education, the diversity of our student body, and the impact of our alumni. Whether you are looking for a testimonial that relates to your program of interest, your career aspirations, or your cultural background, you can find it here. Browse through our testimonials and discover why our college is the right choice for you!</p>
-          <a href="#" class="block text-lg text-indigo-700 font-bold hover:underline mb-8">Read more testimonials</a>
+          <a href="#" class="block text-lg text-indigo-700 font-bold hover:underline mb-8">Read more Articles</a>
         </div>
       </div>
     </div>
@@ -48,13 +48,12 @@
     {% for post in object_list %}
         {% if post.author.role == 'Faculty' %}
         <div class="card shadow-lg p-4 rounded-lg">
-            {% if post.author.profile_image %}
-            <img src="{{ post.author.profile_image.url }}" alt="Avatar" class="w-33 h-32 rounded-full mr-4">
-            {% endif %}
+          
 
             <h1 class = "text-xl font-semibold text-center">{{ post.title }}</h2>
-            <h1 class="text-l font-semibold text-center">Author:-{{post.author}}</h2>
-            <p class="text-gray-701 mt-4 italic">"{{ post.content|safe }}"</p>
+            <h1 class="text-l text-blue-500 font-semibold text-center">Author:-{{post.author}}</h2>
+
+            <p class="text-gray-700 mt-4 italic">"{{ post.content|safe }}"</p>
             {% if post.document %}
                 <a href="{{ post.document.url }}" class="text-blue-500 font-semibold hover:underline">Download Document</a>
             {% endif %}

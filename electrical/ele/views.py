@@ -16,11 +16,15 @@ from django.http import Http404
 def index(request):
     return render(request, 'ele/index.html')
 
-def acedemics(request):
-    return render(request, 'ele/acedemics.html')
+
+def labs(request):
+    return render(request, 'ele/labs.html')
+
+def academics(request):
+    return render(request, 'ele/academics.html')
 
 
-def under_gradutae_programmes(request):
+def under_graduate_programmes(request):
     return render(request, 'ele/undergraduate_programmes.html')
 
 

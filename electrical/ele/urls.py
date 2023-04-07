@@ -1,13 +1,12 @@
 from django.urls import path
 from . import views
-from .models import RoleChoices
 from .views import signup,CustomLoginView, AlumniPostListView, FacultyPostListView, UserListView
-from django.contrib.auth import views as auth_views
 
 urlpatterns = [
     path('', views.index, name='index'),
-    path('acedemics/', views.acedemics, name='acedemics'),
-    path('undergraduateprogrammes/', views.under_gradutae_programmes, name='undergraduateprogrammes'),
+    path('acedemics/', views.academics, name='acedemics'),
+    path('undergraduateprogrammes/', views.under_graduate_programmes, name='undergraduateprogrammes'),
+    path('labs/', views.labs, name = "labs"),
     path('alumni/posts/', AlumniPostListView.as_view(), name='alumni_posts'),
     path('faculty/posts/', FacultyPostListView.as_view(), name='faculty_posts'),
     path('signup/', signup, name='signup'),
