@@ -4,6 +4,7 @@
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
   <link href="https://unpkg.com/tailwindcss@^2.2/dist/tailwind.min.css" rel="stylesheet">
   
     <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/slick-carousel/slick/slick.css"/>
@@ -24,45 +25,86 @@
   }
   </style>
 </head>
-<body class="bg-gray-200">
+    <body class="bg-gray-200">
+      <nav class="container mx-auto px-4 md:px-6 py-3 navbar p-6 rounded-lg">
+        <div class="flex items-center justify-between">
+          <div class="text-black hidden md:flex">
+            <a href="{% url 'index' %}" class="text-xl font-bold">EE</a>
+          </div>
+          <div class="flex items-center space-x-3 md:space-x-4 hidden md:flex">
+            <a href="{% url 'acedemics' %}" class="text-gray-600 hover:text-gray-900">Academics</a>
+            <a href="{% url 'alumni_posts' %}" class="text-gray-600 hover:text-gray-900">Research</a>
+            <a href="{% url 'faculty_posts' %}" class="text-gray-600 hover:text-gray-900">Articles</a>
+            <a href="{% url 'alumni_posts' %}" class="text-gray-600 hover:text-text-gray-900">Testinomials</a>
+            <a href="{% url 'signup' %}" class="text-gray-600 hover:text-gray-900">Sign Up</a>
+            <a href="{% url 'login' %}" class="text-gray-600 hover:text-gray-900">Sign In</a>
+            {% if user.is_authenticated %}
+            <a href="{% url 'logout' %}" class="text-red-600 hover:text-gray-900">Logout</a>
+            {% endif %}
+            <div class="dropdown">
+              <button class="text-gray-800 hover:text-gray-900 mx-3 rounded-md px-3 py-2 text-sm font-medium">People</button>
+              <nav class="dropdown-menu absolute hidden text-gray-200 pt-1">
+                <a class="rounded-t bg-gray-800 hover:bg-gray-900 py-2 px-4 block whitespace-no-wrap" href="{% url 'faculty_list' %}">Faculty</a>
+                <a class="bg-gray-800 hover:bg-gray-900 py-2 px-4 block whitespace-no-wrap" href="{% url 'alumni_list' %}">Alumni</a>
+                <a class="rounded-b bg-gray-800 hover:bg-gray-900 py-2 px-4 block whitespace-no-wrap" href="{% url 'user_list' %}">Students</a>
+              
 
-  
-  
-  
-    <nav class="container mx-auto px-6 py-3 navbar p-6 rounded-lg">
-      <div class="flex items-center justify-between">
-        <div class="text-black">
-          <a href="{% url 'index' %}" class="text-xl font-bold">EE</a>
+
+              </nav>
+            </div>
+          </div>
         </div>
-        <div class="flex items-center">
-          <a href="{% url 'acedemics' %}" class="text-gray-600 hover:text-gray-900 mx-3">Academics</a>
-          <a href="{% url 'alumni_posts' %}" class="text-gray-600 hover:text-gray-900 mx-3">Research</a>
-          <a href="{% url 'faculty_posts' %}" class="text-gray-600 hover:text-gray-900 mx-3">Articles</a>
-          <a href="{% url 'alumni_posts' %}" class="text-gray-600 hover:text-text-gray-900 mx-3">Testinomials</a>
-		<a href="{% url 'signup' %}" class="text-gray-600 hover:text-gray-900 mx-3">Sign Up</a>
-		<a href="{% url 'login' %}" class="text-gray-600 hover:text-gray-900 mx-3">Sign In</a>	
-    {% if user.is_authenticated %}
-    <a href = "{% url 'logout' %}" class="text-red-600 hover:text-gray-900 mx-3">Logout</a>
-    {% endif %}
-
-<div class="dropdown">
-                <button class="text-gray-800 hover:text-gray-900 mx-3 rounded-md px-3 py-2 text-sm font-medium">People</button>
-                <nav class="dropdown-menu absolute hidden text-gray-200 pt-1">
-                  <a class="rounded-t bg-gray-800 hover:bg-gray-900 py-2 px-4 block whitespace-no-wrap" href="{% url 'faculty_list' %}">Faculty</a>
-                  <a class="bg-gray-800 hover:bg-gray-900 py-2 px-4 block whitespace-no-wrap" href="{% url 'alumni_list' %}">Alumni</a>
-                  <a class="rounded-b bg-gray-800 hover:bg-gray-900 py-2 px-4 block whitespace-no-wrap" href="{% url 'user_list' %}">Students</a>
-                
-
-
-                </nav>
-              </div>
-
-        </div>
+      </nav>
+      <div class="md:hidden absolute right-4">
+        
+        <button id="menu-button" class="text-black focus:outline-none" aria-expanded="true" aria-label="Toggle navigation">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="h-6 w-6"><path d="M4 6h16M4 12h16M4 18h16"></path></svg>
+        </button>
       </div>
-    </nav>
-      
-  
-    
+  <!-- Mobile menu -->
+  <div id="mobile-menu" class="md:hidden bg-gray-200">
+    <ul class="p-4 space-y-2">
+      <li><a href="{% url 'index' %}" class="text-xl font-bold">EE</a></li>
+      <li><a href="{% url 'acedemics' %}" class="block text-gray-700 hover:text-gray-900">Academics</a></li>
+      <li><a href="{% url 'alumni_posts' %}" class="text-gray-700 hover:text-gray-900">Research</a></li>
+        <li><a href="{% url 'faculty_posts' %}" class="text-gray-600 hover:text-gray-900">Articles</a></li>
+        <li> <a href="{% url 'alumni_posts' %}" class="text-gray-600 hover:text-text-gray-900">Testinomials</a></li>
+        <li><a href="{% url 'signup' %}" class="text-gray-600 hover:text-gray-900">Sign Up</a></li>
+        <li><a href="{% url 'login' %}" class="text-gray-600 hover:text-gray-900">Sign In</a> </li> 
+        <li>
+          {% if user.is_authenticated %}
+          <a href="{% url 'logout' %}" class="text-red-600 hover:text-gray-900">Logout</a>
+          {% endif %}
+          <div class="dropdown">
+            <button class="text-gray-800 hover:text-gray-900 py-2 text-sm font-medium">People</button>
+            <nav class="dropdown-menu absolute hidden text-gray-200 pt-1">
+              <a class="rounded-t bg-gray-800 hover:bg-gray-900 py-2 px-4 block whitespace-no-wrap" href="{% url 'faculty_list' %}">Faculty</a>
+              <a class="bg-gray-800 hover:bg-gray-900 py-2 px-4 block whitespace-no-wrap" href="{% url 'alumni_list' %}">Alumni</a>
+              <a class="rounded-b bg-gray-800 hover:bg-gray-900 py-2 px-4 block whitespace-no-wrap" href="{% url 'user_list' %}">Students</a>
+            
+
+
+            </nav>
+          </div>
+        </li> 
+    </ul>
+  </div>
+
+<script>
+// Get the menu button and the mobile menu
+const menuButton = document.getElementById("menu-button");
+const mobileMenu = document.getElementById("mobile-menu");
+
+// Add a click event listener to the menu button
+menuButton.addEventListener("click", function() {
+  // Toggle the aria-expanded attribute
+  let expanded = this.getAttribute("aria-expanded") === "true";
+  this.setAttribute("aria-expanded", !expanded);
+
+  // Toggle the visibility of the mobile menu
+  mobileMenu.classList.toggle("hidden");
+});
+</script>     
 
     {% block content %}
 
