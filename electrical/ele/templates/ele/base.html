@@ -5,8 +5,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-  <link href="https://unpkg.com/tailwindcss@^2.2/dist/tailwind.min.css" rel="stylesheet">
-  
+  <script src="https://cdn.tailwindcss.com"></script>  
     <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/slick-carousel/slick/slick.css"/>
     <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/slick-carousel/slick/slick-theme.css"/>  
 
@@ -25,19 +24,19 @@
   }
   </style>
 </head>
-    <body class="bg-gray-200">
-      <nav class="container mx-auto px-4 md:px-6 py-3 navbar p-6 rounded-lg">
+    <body class="bg-gradient-to-t from-blue-200 via-blue-100 to-blue-200">
+      <nav class="container mx-auto px-4 md:px-6 py-3 navbar p-6 bg-gradient-to-b from-blue-200 to-blue-200">
         <div class="flex items-center justify-between">
           <div class="text-black hidden md:flex">
             <a href="{% url 'index' %}" class="text-xl font-bold">EE</a>
           </div>
           <div class="flex items-center space-x-3 md:space-x-4 hidden md:flex">
-            <a href="{% url 'acedemics' %}" class="text-gray-600 hover:text-gray-900">Academics</a>
-            <a href="{% url 'alumni_posts' %}" class="text-gray-600 hover:text-gray-900">Research</a>
-            <a href="{% url 'faculty_posts' %}" class="text-gray-600 hover:text-gray-900">Articles</a>
-            <a href="{% url 'alumni_posts' %}" class="text-gray-600 hover:text-text-gray-900">Testinomials</a>
-            <a href="{% url 'signup' %}" class="text-gray-600 hover:text-gray-900">Sign Up</a>
-            <a href="{% url 'login' %}" class="text-gray-600 hover:text-gray-900">Sign In</a>
+            <a href="{% url 'acedemics' %}" class="text-gray-600 font-semibold hover:text-gray-900">Academics</a>
+            <a href="{% url 'alumni_posts' %}" class="text-gray-600 font-semibold hover:text-gray-900">Research</a>
+            <a href="{% url 'faculty_posts' %}" class="text-gray-600 font-semibold hover:text-gray-900">Articles</a>
+            <a href="{% url 'alumni_posts' %}" class="text-gray-600 font-semibold hover:text-text-gray-900">Testinomials</a>
+            <a href="{% url 'signup' %}" class="text-gray-600 font-semibold hover:text-gray-900">Sign Up</a>
+            <a href="{% url 'login' %}" class="text-gray-600 font-semibold hover:text-gray-900">Sign In</a>
             {% if user.is_authenticated %}
             <a href="{% url 'logout' %}" class="text-red-600 hover:text-gray-900">Logout</a>
             {% endif %}
@@ -62,7 +61,7 @@
         </button>
       </div>
   <!-- Mobile menu -->
-  <div id="mobile-menu" class="md:hidden bg-gray-200">
+  <div id="mobile-menu" class="md:hidden">
     <ul class="p-4 space-y-2">
       <li><a href="{% url 'index' %}" class="text-xl font-bold">EE</a></li>
       <li><a href="{% url 'acedemics' %}" class="block text-gray-700 hover:text-gray-900">Academics</a></li>
