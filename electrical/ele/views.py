@@ -1,17 +1,13 @@
 from django.shortcuts import render, redirect, get_object_or_404
 from django.http import HttpResponse
 from .models import Post, CustomUser, RoleChoices
-from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
-from django.contrib.auth import authenticate, login, logout
+from django.contrib.auth import  logout
 from .forms import CustomUserCreationForm, PostForm
 from django.contrib.auth.views import LoginView
-from django.views.generic import ListView, CreateView
+from django.views.generic import ListView, CreateView, DetailView
 from django.urls import reverse
-from django.http import HttpResponseRedirect
-from django.contrib.auth import get_user_model
 from django.contrib.auth.decorators import login_required
-from django.contrib import messages
-from django.http import Http404
+from django.views import generic
 
 def index(request):
     return render(request, 'ele/index.html')
@@ -29,7 +25,7 @@ def under_graduate_programmes(request):
 
 
 
-class AlumniPostListView(ListView):
+class AlumniPostListView(generic.ListView):
     model = Post
     template_name = 'ele/post_list.html'
 
@@ -128,3 +124,10 @@ def create_post(request):
 def logout_view(request):
     logout(request)
     return redirect('login')
+
+
+
+class PostDetailView(DetailView):
+    model = Post
+    template_name = 'ele/post_detail.html'
+

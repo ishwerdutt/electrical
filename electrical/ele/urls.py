@@ -1,6 +1,8 @@
 from django.urls import path
 from . import views
 from .views import signup,CustomLoginView, AlumniPostListView, FacultyPostListView, UserListView
+from .views import AlumniPostListView, FacultyPostListView, PostDetailView
+
 
 urlpatterns = [
     path('', views.index, name='index'),
@@ -17,5 +19,6 @@ urlpatterns = [
     path('faculty/', UserListView.as_view(), {'role': 'Faculty'}, name='faculty_list'),
     path('alumni/', UserListView.as_view(), {'role': 'Alumni'}, name='alumni_list'),
     path('create_post/', views.create_post , name='create_post'),
+    path('<int:pk>/', PostDetailView.as_view(), name='post_detail'),
 ]
 

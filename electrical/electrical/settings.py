@@ -128,6 +128,7 @@ USE_I18N = True
 USE_TZ = True
 
 CSRF_TRUSTED_ORIGINS = ['https://electrical-production.up.railway.app']
+FILE_UPLOAD_PERMISSIONS = 0o644
 
 
 # Static files (CSS, JavaScript, Images)
@@ -135,7 +136,7 @@ CSRF_TRUSTED_ORIGINS = ['https://electrical-production.up.railway.app']
 
 STATIC_URL = "static/"
 STATIC_ROOT =os.path.join(BASE_DIR, 'staticfiles')
-MEDIA_URL = 'media/'
+MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
 # Default primary key field type
