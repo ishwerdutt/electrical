@@ -28,3 +28,7 @@ class CustomUserCreationForm(UserCreationForm):
     class Meta:
         model = CustomUser
         fields = ('username', 'email','name','bio','role' ,'company', 'subjects', 'profile_image')
+
+
+class UserSearchForm(forms.Form):
+    query = forms.CharField(max_length=100)

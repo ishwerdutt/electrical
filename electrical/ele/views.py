@@ -8,6 +8,8 @@ from django.views.generic import ListView, CreateView, DetailView
 from django.urls import reverse
 from django.contrib.auth.decorators import login_required
 from django.views import generic
+from django.db.models import Q
+
 
 def index(request):
     return render(request, 'ele/index.html')
@@ -100,10 +102,14 @@ class UserListView(ListView):
             queryset = CustomUser.objects.filter(role=RoleChoices.ALUMNI.value)
         else:
             queryset = CustomUser.objects.all()
+
+        query = self.request.GET.get('query')
+        if query:
+            queryset = queryset.filter(Q(username__icontains=query) | Q(subjects__icontains=query))
+
         return queryset
 
-
-
+        
 
 @login_required(login_url="login")
 def create_post(request):
@@ -130,4 +136,6 @@ def logout_view(request):
 class PostDetailView(DetailView):
     model = Post
     template_name = 'ele/post_detail.html'
+
+# searching users
 
