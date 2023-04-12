@@ -1,7 +1,6 @@
-from django.urls import path
+from django.urls import path, include
 from . import views
-from .views import signup,CustomLoginView, AlumniPostListView, FacultyPostListView, UserListView
-from .views import AlumniPostListView, FacultyPostListView, PostDetailView
+from .views import signup,CustomLoginView, FacultyPostListView, UserListView, PostDetailView, Guide
 
 
 urlpatterns = [
@@ -9,7 +8,7 @@ urlpatterns = [
     path('acedemics/', views.academics, name='acedemics'),
     path('undergraduateprogrammes/', views.under_graduate_programmes, name='undergraduateprogrammes'),
     path('labs/', views.labs, name = "labs"),
-    path('alumni/posts/', AlumniPostListView.as_view(), name='alumni_posts'),
+    path('research/', views.research, name="research"),
     path('faculty/posts/', FacultyPostListView.as_view(), name='faculty_posts'),
     path('signup/', signup, name='signup'),
     path('login/', CustomLoginView.as_view(), name='login'),
@@ -20,5 +19,7 @@ urlpatterns = [
     path('alumni/', UserListView.as_view(), {'role': 'Alumni'}, name='alumni_list'),
     path('create_post/', views.create_post , name='create_post'),
     path('<int:pk>/', PostDetailView.as_view(), name='post_detail'),
+    path('guides/', include('guides.urls')),
+
 ]
 

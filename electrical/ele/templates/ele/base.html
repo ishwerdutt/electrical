@@ -24,24 +24,43 @@
   }
   </style>
 </head>
-    <body class="bg-gradient-to-t from-blue-200 via-blue-100 to-blue-200">
-      <nav class="container mx-auto px-4 md:px-6 py-3 navbar p-6 bg-gradient-to-b from-blue-200 to-blue-200">
+    <body class="bg-white">
+      <nav class="container mx-auto px-4 md:px-6 py-3 navbar p-6">
         <div class="flex items-center justify-between">
           <div class="text-black hidden md:flex">
             <a href="{% url 'index' %}" class="text-xl font-bold">EE</a>
           </div>
           <div class="flex items-center space-x-3 md:space-x-4 hidden md:flex">
-            <a href="{% url 'acedemics' %}" class="text-gray-600 font-semibold hover:text-gray-900">Academics</a>
-            <a href="{% url 'alumni_posts' %}" class="text-gray-600 font-semibold hover:text-gray-900">Research</a>
-            <a href="{% url 'faculty_posts' %}" class="text-gray-600 font-semibold hover:text-gray-900">Articles</a>
-            <a href="{% url 'alumni_posts' %}" class="text-gray-600 font-semibold hover:text-text-gray-900">Testinomials</a>
-            <a href="{% url 'signup' %}" class="text-gray-600 font-semibold hover:text-gray-900">Sign Up</a>
-            <a href="{% url 'login' %}" class="text-gray-600 font-semibold hover:text-gray-900">Sign In</a>
+            <a href="{% url 'acedemics' %}" class="text-gray-600 font-semibold hover:text-gray-900 hover:underline">Academics</a>
+            <a href="{% url 'research' %}" class="text-gray-600 font-semibold hover:text-gray-900 hover:underline">Research</a>
+            <a href="{% url 'faculty_posts' %}" class="text-gray-600 font-semibold hover:text-gray-900 hover:underline">Articles</a>
+            <div class="dropdown">
+              <button class="text-gray-800 hover:text-gray-900 hover:underline rounded-md py-2 text-sm font-medium">
+                Guides <i class="fas fa-chevron-down"></i>
+              </button>
+              <nav class="dropdown-menu absolute hidden bg-white border border-gray-300 rounded-md shadow-lg">
+                <a class="py-2 px-4 block whitespace-no-wrap hover:bg-gray-100 hover:underline" href="{% url 'guides' %}">How-to Guides</a>
+                <hr class="border-gray-200 my-2">
+                <a class="py-2 px-4 block whitespace-no-wrap hover:bg-gray-100" href="#">Competitive Examinations</a>
+                <a class="py-2 px-4 block whitespace-no-wrap hover:bg-gray-100" href="#">Student Guides</a>
+                <hr class="border-gray-200 my-2">
+                <a class="py-2 px-4 block whitespace-no-wrap hover:bg-gray-100" href="#">Institute Formalities</a>
+                <a class="py-2 px-4 block whitespace-no-wrap hover:bg-gray-100" href="#">Institute Facilities</a>
+                <hr class="border-gray-200 my-2">
+                <a class="py-2 px-4 block whitespace-no-wrap hover:bg-gray-100" href="#">Internet and Computers</a>
+                <hr class="border-gray-200 my-2">
+                <a class="py-2 px-4 block whitespace-no-wrap hover:bg-gray-100" href="#">Student Life</a>
+                <a class="py-2 px-4 block whitespace-no-wrap hover:bg-gray-100" href="#">Programming Languages</a>
+              </nav>
+            </div>
+            
+            <a href="{% url 'signup' %}" class="text-gray-600 font-semibold hover:text-gray-900 hover:underline">Sign Up</a>
+            <a href="{% url 'login' %}" class="text-gray-600 font-semibold hover:text-gray-900 hover:underline">Sign In</a>
             {% if user.is_authenticated %}
             <a href="{% url 'logout' %}" class="text-red-600 hover:text-gray-900">Logout</a>
             {% endif %}
             <div class="dropdown">
-              <button class="text-gray-800 hover:text-gray-900 mx-3 rounded-md px-3 py-2 text-sm font-medium">People</button>
+              <button class="text-gray-800 hover:text-gray-900 hover:underline mx-3 rounded-md px-3 py-2 text-sm font-medium">People</button>
               <nav class="dropdown-menu absolute hidden text-gray-200 pt-1">
                 <a class="rounded-t bg-gray-800 hover:bg-gray-900 py-2 px-4 block whitespace-no-wrap" href="{% url 'faculty_list' %}">Faculty</a>
                 <a class="bg-gray-800 hover:bg-gray-900 py-2 px-4 block whitespace-no-wrap" href="{% url 'alumni_list' %}">Alumni</a>
@@ -65,9 +84,9 @@
     <ul class="p-4 space-y-2">
       <li><a href="{% url 'index' %}" class="text-xl font-bold">EE</a></li>
       <li><a href="{% url 'acedemics' %}" class="block text-gray-700 hover:text-gray-900">Academics</a></li>
-      <li><a href="{% url 'alumni_posts' %}" class="text-gray-700 hover:text-gray-900">Research</a></li>
+      <li><a href="{% url 'guides' %}" class="text-gray-700 hover:text-gray-900">Research</a></li>
         <li><a href="{% url 'faculty_posts' %}" class="text-gray-600 hover:text-gray-900">Articles</a></li>
-        <li> <a href="{% url 'alumni_posts' %}" class="text-gray-600 hover:text-text-gray-900">Testinomials</a></li>
+        <li> <a href="#" class="text-gray-600 hover:text-text-gray-900">Testinomials</a></li>
         <li><a href="{% url 'signup' %}" class="text-gray-600 hover:text-gray-900">Sign Up</a></li>
         <li><a href="{% url 'login' %}" class="text-gray-600 hover:text-gray-900">Sign In</a> </li> 
         <li>

@@ -9,6 +9,7 @@ from django.urls import reverse
 from django.contrib.auth.decorators import login_required
 from django.views import generic
 from django.db.models import Q
+from django.views.generic import TemplateView
 
 
 def index(request):
@@ -25,15 +26,9 @@ def academics(request):
 def under_graduate_programmes(request):
     return render(request, 'ele/undergraduate_programmes.html')
 
+def research(request):
+    return render(request, 'ele/research.html')
 
-
-class AlumniPostListView(generic.ListView):
-    model = Post
-    template_name = 'ele/post_list.html'
-
-    def get_queryset(self):
-        alumni_users = CustomUser.objects.filter(role=RoleChoices.ALUMNI.value)
-        return Post.objects.filter(author__in=alumni_users)
 
 class FacultyPostListView(ListView):
     model = Post
@@ -43,7 +38,16 @@ class FacultyPostListView(ListView):
         faculty_users = CustomUser.objects.filter(role=RoleChoices.FACULTY.value)
         return Post.objects.filter(author__in=faculty_users)
     
-
+class Guide(TemplateView):
+    template_name = "ele/how_to_guides.html"
+    
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        section = self.kwargs['section']
+        context['section_title'] = section.replace('_', ' ')
+        # Replace the above line with your logic to fetch the content for each section
+        # and pass it to the template
+        return context
 
 def signup(request):
     if request.method == 'POST':
