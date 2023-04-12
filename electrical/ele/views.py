@@ -1,6 +1,6 @@
 from django.shortcuts import render, redirect, get_object_or_404
 from django.http import HttpResponse
-from .models import Post, CustomUser, RoleChoices
+from .models import Post, CustomUser, RoleChoices, Lab
 from django.contrib.auth import  logout
 from .forms import CustomUserCreationForm, PostForm
 from django.contrib.auth.views import LoginView
@@ -33,6 +33,11 @@ def research(request):
 class PostListView(ListView):
     model = Post
     template_name = 'ele/post_list.html'
+
+class LabView(ListView):
+    model = Lab
+    template_name = 'ele/labs.html'
+
 
     
 class Guide(TemplateView):

@@ -6,7 +6,7 @@ Welcome to the department of electrical engineering
 
 {% block content %}
 
-<div class="max-w-md mx-auto bg-white p-8 rounded-lg shadow-md">
+<div class="login-box">
     <h2 class="text-2xl font-bold mb-8 text-center text-gray-800">Log In</h2>
     <form method="post" class="space-y-4" id="login-form">
         {% csrf_token %}
@@ -19,4 +19,26 @@ Welcome to the department of electrical engineering
     </form>
     <p class="text-center mt-4">Don't have an account? <a href="{% url 'signup' %}">Sign up</a></p>
 </div>
+<style>
+    html {
+  height: 100%;
+}
+
+
+.login-box {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 400px;
+  padding: 40px;
+  transform: translate(-50%, -50%);
+  background: rgba(255, 255, 255, 0.5);
+  box-sizing: border-box;
+  box-shadow: 0 15px 25px rgba(0,0,0,.6);
+  border-radius: 10px;
+}
+
+
+
+</style>
 {% endblock %}

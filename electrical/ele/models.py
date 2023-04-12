@@ -9,7 +9,7 @@ from enum import Enum
 class RoleChoices(Enum):
     ALUMNI = 'Alumni'
     FACULTY = 'Faculty'
-
+    STAFF = 'Staff'
 
 class CustomUser(AbstractUser):
     role = models.CharField(choices=[(choice.value, choice.value) for choice in RoleChoices], max_length=10, null = True)
@@ -42,3 +42,16 @@ class Post(models.Model):
 
     def get_absolute_url(self):
         return reverse("post")
+    
+
+class Lab(models.Model):
+    lab_name = models.CharField(max_length=100)
+    description= RichTextField(default="no short description available", null=True)
+    lab_image = models.ImageField(null=True, blank=True, upload_to="images/")
+    lab_details = models.FileField(upload_to='documents/', null=True, blank=True)
+
+    def __str__(self):
+        return str(self.lab_name) or ''
+
+    def get_absolute_url(self):
+        return reverse("lab")

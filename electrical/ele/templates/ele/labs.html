@@ -13,6 +13,35 @@ Labs
 <h1 class="text-4xl text-gray-600 p-4"> Labs</h1>
 
 
-
+<div class="container mx-auto p-4">
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+      {% for lab in object_list %}
+      <div class=" card bg-white rounded-lg shadow-md overflow-hidden hover:shadow-xl transition duration-300">
+        <div class="relative">
+          <img class="w-full h-56 object-cover object-center" src="https://source.unsplash.com/random/800x600?sig=1" alt="{{ lab.lab_name }}">
+          <div class="absolute bottom-0 left-0 p-4">
+            <span class="inline-block bg-blue-500 text-white uppercase text-xs font-semibold tracking-wider py-1 px-2 rounded-full">{{ post.category }}</span>
+          </div>
+        </div>
+        <div class="p-4">
+          <p class="text-base font-medium text-gray-600 mb-2">{{ lab.description|safe }}</p>
+          {% if lab.lab_details %}
+          <a href="{{ lab.lab_details.url }}" class="text-blue-500 font-medium hover:underline block mb-2">Download Document</a>
+          {% endif %}
+        </div>
+      </div>
+      {% endfor %}
+    </div>
+  </div>
+  
+<style>
+  .card {
+    width: 90%;
+    background: rgba(255, 255, 255, 0.5);
+    box-sizing: border-box;
+    box-shadow: 0 15px 25px rgba(0,0,0,.6);
+    border-radius: 10px;
+  }
+</style>
 
 {% endblock %}

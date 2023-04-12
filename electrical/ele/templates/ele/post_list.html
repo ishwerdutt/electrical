@@ -6,25 +6,11 @@
 
 {% block content %}
 
-  <div class="container mx-auto px-4 py-8">
-    <div class="max-w-4xl mx-auto bg-gray-200 rounded-xl shadow-md overflow-hidden">
-      <div class="md:flex">
-        <div class="md:flex-shrink-0">
-          <img class="h-full w-full object-cover md:w-48" src="https://source.unsplash.com/random/800x600" alt="College image">
-        </div>
-        <div class="p-8">
-          <div class="uppercase tracking-wide text-sm text-indigo-500 font-semibold">Articles</div>
-          <h1 class="text-4xl font-bold text-gray-800 mb-4">Welcome to our Articles page</h1>
-          <p class="text-lg text-gray-600 mb-8">Here you can hear from real students who have studied at our college and achieved their academic and personal goals. Testimonials are a powerful way to showcase the quality of our education, the diversity of our student body, and the impact of our alumni. Whether you are looking for a testimonial that relates to your program of interest, your career aspirations, or your cultural background, you can find it here. Browse through our testimonials and discover why our college is the right choice for you!</p>
-          <a href="#" class="block text-lg text-indigo-700 font-bold hover:underline mb-8">Read more Articles</a>
-        </div>
-      </div>
-    </div>
-  </div>
+ <h1 class="text-4xl font-bold"> Articles </h1>
   <div class="container mx-auto p-4">
     <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
       {% for post in object_list %}
-      <div class="bg-white rounded-lg shadow-md overflow-hidden hover:shadow-xl transition duration-300">
+      <div class="card bg-gray-200 rounded-lg shadow-md overflow-hidden hover:shadow-xl transition duration-300 mx-8 my-12">
         <div class="relative">
           <img class="w-full h-56 object-cover object-center" src="https://source.unsplash.com/random/800x600?sig=1" alt="{{ post.title }}">
           <div class="absolute bottom-0 left-0 p-4">
@@ -47,7 +33,15 @@
   </div>
   
 
-    
+  <style>
+    .card {
+      width: 90%;
+      background: rgba(255, 255, 255, 0.5);
+      box-sizing: border-box;
+      box-shadow: 0 15px 25px rgba(0,0,0,.6);
+      border-radius: 10px;
+    }
+  </style>
 
 
 

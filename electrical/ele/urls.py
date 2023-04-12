@@ -1,13 +1,13 @@
 from django.urls import path, include
 from . import views
-from .views import signup,CustomLoginView, PostListView, UserListView, PostDetailView, Guide
+from .views import signup,CustomLoginView, PostListView, UserListView, PostDetailView, LabView
 
 
 urlpatterns = [
     path('', views.index, name='index'),
     path('acedemics/', views.academics, name='acedemics'),
     path('undergraduateprogrammes/', views.under_graduate_programmes, name='undergraduateprogrammes'),
-    path('labs/', views.labs, name = "labs"),
+    path('labs/',LabView.as_view(), name = "labs"),
     path('research/', views.research, name="research"),
     path('faculty/posts/', PostListView.as_view(), name='faculty_posts'),
     path('signup/', signup, name='signup'),

@@ -30,7 +30,10 @@
   }
   </style>
 </head>
-    <body class="bg-white">
+
+<body class="bg-gray-200">
+  <!-- Content goes here -->
+
       <nav class="container mx-auto px-4 md:px-6 py-3 navbar p-6">
         <div class="flex items-center justify-between">
           <div class="text-black hidden md:flex">
@@ -144,7 +147,19 @@ menuButton.addEventListener("click", function() {
   // Toggle the visibility of the mobile menu
   mobileMenu.classList.toggle("hidden");
 });
-</script>     
+</script>
+<script>
+$(document).mousemove(function(event) {
+  var mouseX = event.pageX;
+  var mouseY = event.pageY;
+  var gradientX = (mouseX / $(window).width()) * 100;
+  var gradientY = (mouseY / $(window).height()) * 100;
+  $('.bg-gradient-to-r').css('--gradient-x', gradientX + '%');
+  $('.bg-gradient-to-r').css('--gradient-y', gradientY + '%');
+});
+
+</script>  
+   
 
     {% block content %}
 
