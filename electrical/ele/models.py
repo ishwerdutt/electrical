@@ -32,7 +32,7 @@ class CustomUser(AbstractUser):
 
 class Post(models.Model):
     title = models.CharField(max_length=100)
-    subtitle = models.CharField(max_length=10, null=True, blank=True)
+    short_description= models.CharField(max_length=100,default="no short description available", blank=True)
     content = RichTextField(blank=True, null=True)
     author = models.ForeignKey(CustomUser, on_delete=models.CASCADE)
     document = models.FileField(upload_to='documents/', null=True, blank=True)

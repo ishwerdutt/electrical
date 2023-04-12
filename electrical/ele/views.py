@@ -30,13 +30,10 @@ def research(request):
     return render(request, 'ele/research.html')
 
 
-class FacultyPostListView(ListView):
+class PostListView(ListView):
     model = Post
     template_name = 'ele/post_list.html'
 
-    def get_queryset(self):
-        faculty_users = CustomUser.objects.filter(role=RoleChoices.FACULTY.value)
-        return Post.objects.filter(author__in=faculty_users)
     
 class Guide(TemplateView):
     template_name = "ele/how_to_guides.html"

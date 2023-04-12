@@ -21,21 +21,31 @@
       </div>
     </div>
   </div>
-  <div class="container mx-auto p-4">  
-    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
+  <div class="container mx-auto p-4">
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
       {% for post in object_list %}
-          {% if post.author.role == 'Faculty' %}
-          <div class="card shadow-md overflow-hidden p-3 rounded-md bg-gray-200">
-              <h1 class="text-xl font-semibold text-center mb-2"><a href="{% url 'post_detail' pk=post.pk %}" class="text-blue-500 hover:underline">{{ post.title }}</a></h1>
-              <p class="text-l font-semibold text-center text-gray-600 mb-2">Author: {{post.author}}</p>
-              {% if post.document %}
-                  <a href="{{ post.document.url }}" class="text-blue-500 font-semibold hover:underline block mb-2">Download Document</a>
-              {% endif %}
+      <div class="bg-white rounded-lg shadow-md overflow-hidden hover:shadow-xl transition duration-300">
+        <div class="relative">
+          <img class="w-full h-56 object-cover object-center" src="https://source.unsplash.com/random/800x600?sig=1" alt="{{ post.title }}">
+          <div class="absolute bottom-0 left-0 p-4">
+            <span class="inline-block bg-blue-500 text-white uppercase text-xs font-semibold tracking-wider py-1 px-2 rounded-full">{{ post.category }}</span>
           </div>
+        </div>
+        <div class="p-4">
+          <h1 class="text-lg font-semibold text-gray-800 mb-2"><a href="{% url 'post_detail' pk=post.pk %}" class="text-blue-500 hover:underline">{{ post.title }}</a></h1>
+          <p class="text-sm font-medium text-gray-600 mb-2">By {{ post.author.name }}</p>
+          <p class="text-base font-medium text-gray-600 mb-2">{{ post.short_description }}</p>
+          {% if post.document %}
+          <a href="{{ post.document.url }}" class="text-blue-500 font-medium hover:underline block mb-2">Download Document</a>
           {% endif %}
+        </div>
+      </div>
       {% endfor %}
     </div>
   </div>
+  
+  </div>
+  
 
     
 

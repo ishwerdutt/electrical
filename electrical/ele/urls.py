@@ -1,6 +1,6 @@
 from django.urls import path, include
 from . import views
-from .views import signup,CustomLoginView, FacultyPostListView, UserListView, PostDetailView, Guide
+from .views import signup,CustomLoginView, PostListView, UserListView, PostDetailView, Guide
 
 
 urlpatterns = [
@@ -9,7 +9,7 @@ urlpatterns = [
     path('undergraduateprogrammes/', views.under_graduate_programmes, name='undergraduateprogrammes'),
     path('labs/', views.labs, name = "labs"),
     path('research/', views.research, name="research"),
-    path('faculty/posts/', FacultyPostListView.as_view(), name='faculty_posts'),
+    path('faculty/posts/', PostListView.as_view(), name='faculty_posts'),
     path('signup/', signup, name='signup'),
     path('login/', CustomLoginView.as_view(), name='login'),
     path('logout/', views.logout_view, name = "logout"),
