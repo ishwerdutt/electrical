@@ -2,6 +2,7 @@ from django.db import models
 from django.contrib.auth.models import AbstractUser
 from ckeditor.fields import RichTextField
 from django.urls import reverse
+from django.utils import timezone
 
 from enum import Enum
 
@@ -18,6 +19,7 @@ class CustomUser(AbstractUser):
     company = models.TextField(null=True)
     subjects = models.CharField(max_length=50, null = True)
     profile_image = models.ImageField(null=True, blank=True, upload_to="images/")
+
 
     def __str__(self):
         return str(self.username)
@@ -36,13 +38,15 @@ class Post(models.Model):
     content = RichTextField(blank=True, null=True)
     author = models.ForeignKey(CustomUser, on_delete=models.CASCADE)
     document = models.FileField(upload_to='documents/', null=True, blank=True)
+    created_at = models.DateTimeField(default=timezone.now)
+    views = models.PositiveIntegerField(default=0)
+
 
     def __str__(self):
         return str(self.title) or ''
 
     def get_absolute_url(self):
         return reverse("post")
-    
 
 class Lab(models.Model):
     lab_name = models.CharField(max_length=100)
