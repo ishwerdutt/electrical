@@ -16,13 +16,13 @@ class CustomUser(AbstractUser):
     role = models.CharField(choices=[(choice.value, choice.value) for choice in RoleChoices], max_length=10, null = True)
     bio = models.TextField(max_length=10000, null = True)
     name = models.TextField(max_length=30, null = True)
-    company = models.TextField(null=True)
-    subjects = models.CharField(max_length=50, null = True)
-    profile_image = models.ImageField(null=True, blank=True, upload_to="images/")
+    company = models.TextField(null=True, blank=True)
+    subjects = models.CharField(max_length=50, null = True, blank=True)
+    profile_image = models.ImageField(upload_to="images/", null=True, blank=True)
 
 
     def __str__(self):
-        return str(self.username)
+        return str(self.name)
 
     def get_absolute_url(self):
         if self.role == RoleChoices.ALUMNI.value:

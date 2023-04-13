@@ -29,7 +29,18 @@ def under_graduate_programmes(request):
 def research(request):
     return render(request, 'ele/research.html')
 
+def user_detail(request, username):
+    user = get_object_or_404(CustomUser, username=username)
+    if user.role == RoleChoices.ALUMNI.value:
+        posts = Post.objects.filter(author=user)
+        return render(request, 'ele/user_detail.html', {'user': user, 'posts': posts})
+    elif user.role == RoleChoices.FACULTY.value:
+        posts = Post.objects.filter(author=user)
 
+        return render(request, 'ele/user_detail.html', {'user': user, 'posts':posts})
+    else:
+        return HttpResponse('Invalid user role')
+    
 class PostListView(ListView):
     model = Post
     template_name = 'ele/post_list.html'
@@ -53,7 +64,7 @@ class Guide(TemplateView):
 
 def signup(request):
     if request.method == 'POST':
-        form = CustomUserCreationForm(request.POST)
+        form = CustomUserCreationForm(request.POST, request.FILES)
         if form.is_valid():
             form.save()
             return redirect('login')
@@ -80,7 +91,7 @@ class CustomLoginView(LoginView):
             return super().get_success_url()
 
 
-@login_required(login_url="login")
+
 def user_profile(request, username):
     user = get_object_or_404(CustomUser, username=username)
     if user.role == RoleChoices.ALUMNI.value:

@@ -3,7 +3,7 @@
 {% block content %}
   <div class="flex flex-col items-center justify-center min-h-screen bg-gray-100">
     <h1 class="text-3xl font-bold mb-8">Signup</h1>
-    <form class="w-full max-w-sm" method="post">
+    <form class="w-full max-w-sm" method="post" enctype="multipart/form-data">
       {% csrf_token %}
       {{ form.as_p }}
       <button type="submit" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded mt-4">

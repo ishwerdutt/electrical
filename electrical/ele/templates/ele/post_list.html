@@ -6,45 +6,76 @@
 
 {% block content %}
 
- <h1 class="text-4xl font-bold mx-4"> Articles </h1>
-  <div class="container mx-auto p-4">
-    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-      {% for post in object_list %}
-      <div class="card bg-gray-200 rounded-lg shadow-md overflow-hidden hover:shadow-xl transition duration-300">
-        <div class="relative">
-          <img class="w-full h-56 object-cover object-center" src="https://source.unsplash.com/random/800x600?sig=1" alt="{{ post.title }}">
-          <div class="absolute bottom-0 left-0 p-4">
-            <span class="inline-block bg-blue-500 text-white uppercase text-xs font-semibold tracking-wider py-1 px-2 rounded-full">{{ post.category }}</span>
+<div class="flex flex-row">
+  <div class="w-1/4 p-4 rounded-r-lg fixed left-0 top-20 h-screen">
+    <!-- Add a higher z-index value to ensure that the sidebar is positioned above other elements -->
+
+    <h2 class="text-lg text-gray-900 font-semibold mb-2">Search</h2>
+    <div class="relative">
+      <input type="text" class="border border-gray-600 p-2 w-full rounded-full" placeholder="Search articles...">
+      <button class="absolute right-2 top-2 text-gray-600 hover:text-gray-700">
+        <svg class="w-5 h-5" fill="none" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24" stroke="currentColor">
+          <path d="M15.5 15.5L20 20"></path>
+          <path d="M10 17C14.4183 17 18 13.4183 18 9C18 4.58172 14.4183 1 10 1C5.58172 1 2 4.58172 2 9C2 13.4183 5.58172 17 10 17Z"></path>
+        </svg>
+      </button>
+    </div>
+
+    <h2 class="text-lg text-gray-900 font-semibold my-4">Categories</h2>
+    <ul style="list-style-type:disc; padding-left: 4%;">
+      <li><a href="#" class="text-l font-bold text-gray-900 hover:underline">Educational</a></li>
+      <li><a href="#" class="font-bold text-gray-900 hover:underline">Informational</a></li>
+      <li><a href="#" class="font-bold text-gray-900 hover:underline">Faculty</a></li>
+      <li><a href="#" class="font-bold text-gray-900 hover:underline">Alumni</a></li>
+    </ul>
+  </div>
+</div>
+
+  <div class="w-3/4 p-4 ml-auto">
+    <h1 class="text-4xl font-bold mb-4 mx-14"> Articles </h1>
+    <div class="container1 mx-auto">
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+        {% for post in object_list %}
+        <div class="card bg-gray-200 rounded-lg shadow-md overflow-hidden hover:shadow-xl transition duration-300">
+          <div class="relative">
+            <img class="w-full h-22 object-cover object-center" src="https://source.unsplash.com/random/800x600?sig=1" alt="{{ post.title }}">
+            <div class="absolute bottom-0 left-0 p-4">
+              <span class="inline-block bg-blue-500 text-white uppercase text-xs font-semibold tracking-wider py-1 px-2 rounded-full">{{ post.category }}</span>
+            </div>
+          </div>
+          <div class="p-2">
+            <h1 class="text-lg font-semibold text-gray-800"><a href="{% url 'post_detail' pk=post.pk %}" class="text-blue-500 hover:underline">{{ post.title }}</a></h1>
+            <p class="text-sm font-medium text-gray-600">By {{ post.author.name }}</p>
+            <p class="text-base font-medium text-gray-600 mb-2">{{ post.short_description }}</p>
+            
+            {% if post.document %}
+              <a href="{{ post.document.url }}" class="text-blue-500 hover:underline mb-2">Download Document</a>
+            {% endif %}
+            
+            <p class="mx-auto text-sm font-manrope text-gray-600">{{ post.created_at|date:"F d, Y" }}</p>
           </div>
         </div>
-        <div class="p-4">
-          <h1 class="text-lg font-semibold text-gray-800 mb-2"><a href="{% url 'post_detail' pk=post.pk %}" class="text-blue-500 hover:underline">{{ post.title }}</a></h1>
-          <p class="text-sm font-medium text-gray-600 mb-2">By {{ post.author.name }}</p>
-          <p class="text-base font-medium text-gray-600 mb-2">{{ post.short_description }}</p>
-          
-          {% if post.document %}
-
-            <a href="{{ post.document.url }}" class="text-blue-500 hover:underline mb-2">Download Document</a>
-          
-          {% endif %}
-          <p class="mx-auto text-sm font-manrope text-gray-600">{{ post.created_at|date:"F d, Y" }}</p>
-
-        </div>
+        {% endfor %}
       </div>
-      {% endfor %}
     </div>
   </div>
-  
-  </div>
-  
+</div>
+
+
 
   <style>
     .card {
       background: rgba(255, 255, 255, 0.5);
-      box-sizing: border-box;
       box-shadow: 0 15px 25px rgba(0,0,0,.6);
       border-radius: 10px;
+      max-height: fit-content;
+     
     }
+    .container1{
+      max-width: 95%;
+      
+    }
+
   </style>
 
 

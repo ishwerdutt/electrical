@@ -14,6 +14,7 @@ urlpatterns = [
     path('login/', CustomLoginView.as_view(), name='login'),
     path('logout/', views.logout_view, name = "logout"),
     path('profile/<str:username>/', views.user_profile, name='user_profile'),
+    path('user_detail/<str:username>/', views.user_detail, name='user_detail'),
     path('users/', UserListView.as_view(), name='user_list'),
     path('faculty/', UserListView.as_view(), {'role': 'Faculty'}, name='faculty_list'),
     path('alumni/', UserListView.as_view(), {'role': 'Alumni'}, name='alumni_list'),

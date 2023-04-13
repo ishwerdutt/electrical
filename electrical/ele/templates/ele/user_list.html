@@ -9,124 +9,135 @@ user List
 
 
 {% block content %}
-
-<h1>Search Users</h1>
-<form method="GET" action="{% url 'user_list' %}">
-    {% csrf_token %}
-    <label for="query">Search:</label>
-    <input type="text" id="query" name="query" value="{{ request.GET.query }}">
-    <button type="submit" id="search-button">Search</button>
-</form>
-{% if users|length %}
-    {% if request.GET.query %}
-       
-    {% endif %}
-    <ul>
-    {% for user in users %}
-       
-    {% empty %}
-        {% if request.GET.query %}
-            <li>No users found</li>
-        {% endif %}
-    {% endfor %}
-    </ul>
-{% else %}
-    {% if request.GET.query %}
-        <p>No users found</p>
-    {% endif %}
-{% endif %}
-{% if request.resolver_match.url_name == 'alumni_list' %}
-<div class="flex justify-center">
-    <div
-        class="flex flex-col rounded-lg bg-white shadow-lg dark:bg-neutral-700 md:max-w-xl md:flex-row">
-        <img
-        class="h-96 w-full rounded-t-lg object-cover md:h-auto md:w-48 md:rounded-none md:rounded-l-lg"
-        src="https://mdbootstrap.com/wp-content/uploads/2020/06/vertical.jpg"
-        alt="" />
-        <div class="flex flex-col justify-start p-6">
-        <h5
-        class="mb-2 text-xl font-medium text-neutral-800 dark:text-neutral-50">
-        Alumnies
-        </h5>
-        <p class="mb-4 text-base text-neutral-600 dark:text-neutral-200">
-            Alumni are an important part of any college community. They are the graduates who have completed their studies and have moved on to pursue their careers and other endeavors. They are the ambassadors of their alma mater and play a vital role in the growth and success of the college.
-        </p>
-        <p class="text-xs text-neutral-500 dark:text-neutral-300">
-        </p>
-    </div>
-    </div>
-</div>
-<div class="container mx-auto p-4">
-    <h1 class="text-4xl text-blue-600 font-bold mb-4">List of Alumnies</h1>
-    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
-        {% for alumni in users %}
-        <div class="card bg-gray-100 p-6 rounded-lg rounded-lg p-4 border border-blue-400">
-            {% if alumni.profile_image %}
-            <img src="{{ alumni.profile_image.url }}"class="w-32 h-32 rounded-full mx-auto block" alt="{{ alumni.name }}">
-            {% endif %}      
-            <div class="card-body">
-                <h5 class="card-title text-xl bg-gradient-to-r from-blue-600 via-green-500 to-indigo-400 inline-block text-transparent bg-clip-text font-semibold">{{ alumni.name }}</h5>
-                <p class="card-text font-semibold text-gray-900">Placed at: {{ alumni.company }}</p>
-                <p class="card-text text-gray-900">Email: {{ alumni.email }}</p>
-            </div>
-        </div>
+<div class="flex flex-row">
+    <div class="w-1/4 p-4 rounded-r-lg fixed left-0 top-20 h-screen">
+      <h2 class="text-lg text-gray-900 font-semibold mb-2">Search Users</h2>
+      <div class="relative">
+        <form method="GET" action="{% url 'user_list' %}">
+          {% csrf_token %}
+          <div class="flex items-center bg-white border border-gray-600 border-2 p-2 w-full rounded-full">
+            <input class="appearance-none bg-white border-none w-full text-gray-700 leading-tight focus:outline-none" type="text" placeholder="Search users" aria-label="Search" name="query" value="{{ request.GET.query }}">
+            <button class="absolute right-2 top-2 text-gray-600 hover:text-gray-700" type="submit">
+                <svg class="w-5 h-5" fill="none" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24" stroke="currentColor">
+                    <path d="M15.5 15.5L20 20"></path>
+                    <path d="M10 17C14.4183 17 18 13.4183 18 9C18 4.58172 14.4183 1 10 1C5.58172 1 2 4.58172 2 9C2 13.4183 5.58172 17 10 17Z"></path>
+                  </svg>
+            </button>
+          </div>
+        </form>
+      </div>
+      <h2 class="text-lg text-gray-900 font-semibold my-4">Categories</h2>
+      <ul style="list-style-type:disc;
+      padding-left: 4%;">
+        <li><a href="#" class="text-l font-bold text-gray-900 hover:underline">Faculty</a></li>
+        <li><a href="#" class="font-bold text-gray-900 hover:underline">Staff</a></li>
+        <li><a href="#" class="font-bold text-gray-900 hover:underline">Alumnies</a></li>
         
-        {% endfor %}
+        <li><a href="#" class="font-bold text-gray-900 hover:underline">Students</a></li>
+        <li><a href="#" class="font-bold text-gray-900 hover:underline">Others</a></li>
+
+      </ul>
     </div>
-</div> 
+
+{% if request.resolver_match.url_name == 'alumni_list' %}
+<div class="w-3/4 p-4 ml-auto">
+    <h1 class="text-4xl font-bold mb-4 mx-14"> Alumnies</h1>
+    <div class="container1 mx-auto">
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+        {% for user in users %}
+        <div class="card bg-gray-200 rounded-lg shadow-md hover:shadow-xl transition duration-300">
+          <div class="relative">
+            {% if user.profile_image %}
+            <img class="w-full h-40 object-cover object-center" src="{{ user.profile_image.url }}" alt="{{ user.username }}">
+            {% endif %}
+          </div>
+          <div class="p-2">
+            <h1 class="text-lg font-semibold text-gray-800"><a class="text-blue-500 hover:underline" href="{% url 'user_profile' username=user.username %}">{{ user.username }}</a></h1>
+            <p class="text-base font-medium text-gray-600 mb-2">Placed at:-{{ user.company }}</p>
+            <p class="text-sm font-medium text-gray-600">Subjects:-{{ user.subjects }}</p>
+            <p class="text-base font-medium text-gray-600 mb-2">Email:-{{ user.email }}</p>
+            <p class="text-base font-medium text-gray-600 mb-2">Placed at:-{{ user.company }}</p>
+            
+          </div>
+        </div>
+        {% endfor %}
+      </div>
+    </div>
+  </div>
+</div>
+
 {% elif request.resolver_match.url_name == 'faculty_list' %}
 
-<div class="container mx-auto p-4">
-    <h1 class="text-4xl text-blue-600 font-bold mb-4">Professors</h1>
-    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
-        {% for pf in users %}
-        
-        <div class="card bg-gray-100 p-6 rounded-lg shadow-lg rounded-lg p-4">
-            {% if pf.profile_image %}
-            <img src="{{ pf.profile_image.url }}"class="w-32 h-32 rounded-full mx-auto block" alt="{{ pf.name }}">
-            {% endif %}            
-            <div class="card-body">
-                <h5 class="card-title text-green-500 text-xl font-semibold"><a href="#"></a>{{ pf.username }}</a></h5>
-                <p class="card-text text-gray-600">Subjects:-{{ pf.subjects }}</p>
-                <p class="card-text text-gray-600">Email:-{{ pf.email }}</p>
-                
-            </div>
+<div class="w-3/4 p-4 ml-auto">
+    <h1 class="text-4xl font-bold mb-4 mx-14"> Faculities</h1>
+    <div class="container1 mx-auto">
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+        {% for user in users %}
+        <div class="card bg-gray-200 rounded-lg shadow-md overflow-hidden hover:shadow-xl transition duration-300">
+          <div class="relative">
+            {% if user.profile_image %}
+            <img class="w-full h-60 object-cover object-center" src="{{ user.profile_image.url }}" alt="{{ user.name }}">
+            {% endif %}
+          </div>
+          <div class="p-2">
+            <h1 class="text-lg font-semibold text-gray-800"><a class="text-blue-500 hover:underline" href="{% url 'user_detail' username=user.username %}">{{ user.name }}</a></h1>
+            <p class="text-sm font-medium text-gray-600">Subjects:-{{ user.subjects }}</p>
+            <p class="text-base font-medium text-gray-600 mb-2">Email:-{{ user.email }}</p>
+            
+          </div>
         </div>
         {% endfor %}
+      </div>
     </div>
+  </div>
 </div>
 
 
 {% else %}
-<div class="container mx-auto p-4">
-    <h1 class="text-4xl text-blue-600 font-bold mb-4">users</h1>
-    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
+<div class="w-3/4 p-4 ml-auto">
+    <h1 class="text-4xl font-bold mb-4 mx-14">Staff</h1>
+    <div class="container1 mx-auto">
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
         {% for user in users %}
-        
-        <div class="card bg-gray-100 p-6 rounded-lg shadow-lg rounded-lg p-4">
+        <div class="card bg-gray-200 rounded-lg shadow-md overflow-hidden hover:shadow-xl transition duration-300">
+          <div class="relative">
             {% if user.profile_image %}
-            <img src="{{ user.profile_image.url }}"class="w-32 h-32 rounded-full mx-auto block" alt="{{ user.name }}">
-            {% endif %}            
-            <div class="card-body">
-                <h5 class="card-title text-green-500 text-xl font-semibold"><a href="{% url 'user_profile' username=user.username %}">{{ user.username }} - {{ user.role }}</a></h5>
-                <p class="card-text text-gray-600">Subjects:-{{ user.subjects }}</p>
-                <p class="card-text text-gray-600">Email:-{{ user.email }}</p>
-                
-            </div>
+            <img class="w-full h-40 object-cover object-center" src="{{ user.profile_image.url }}" alt="{{ user.username }}">
+            {% endif %}
+          </div>
+          <div class="p-2">
+            <h1 class="text-lg font-semibold text-gray-800"><a class="text-blue-500 hover:underline" href="{% url 'user_profile' username=user.username %}">{{ user.username }}</a></h1>
+            <p class="text-base font-medium text-gray-600 mb-2">Email:-{{ user.email }}</p>
+            {% if user.company %}
+            <p class="text-sm font-medium text-gray-600">Placed at:-{{ user.company }}</p>
+            {% endif %}
+            {% if user.subjects %}
+            <p class="text-sm font-medium text-gray-600">Subjects:-{{ user.subjects }}</p>
+            {% endif %}
+           
+            
+          </div>
         </div>
-    
-
         {% endfor %}
+      </div>
     </div>
+  </div>
 </div>
 
 {% endif %}
 <style>
     .card {
       background: rgba(255, 255, 255, 0.5);
-      box-sizing: border-box;
       box-shadow: 0 15px 25px rgba(0,0,0,.6);
       border-radius: 10px;
+      max-height: fit-content;
+     
     }
+    .container1{
+      max-width: 95%;
+      max-height: 50%;
+      
+    }
+
   </style>
 {% endblock %}
