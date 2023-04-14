@@ -19,6 +19,8 @@ urlpatterns = [
     path('users/', UserListView.as_view(), name='user_list'),
     path('faculty/', UserListView.as_view(), {'role': 'Faculty'}, name='faculty_list'),
     path('alumni/', UserListView.as_view(), {'role': 'Alumni'}, name='alumni_list'),
+    path('staff/', UserListView.as_view(), {'role': 'Staff'}, name='Staff_list'),
+
     path('create_post/', views.create_post , name='create_post'),
     path('<int:pk>/', PostDetailView.as_view(), name='post_detail'),
     path('guides/', include('guides.urls')),

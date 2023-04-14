@@ -59,3 +59,19 @@ class Lab(models.Model):
 
     def get_absolute_url(self):
         return reverse("lab")
+    
+
+class Research(models.Model):
+    title = models.CharField(max_length=100)
+    description= models.CharField(max_length=100,default="no short description available", blank=True)
+    content = RichTextField(blank=True, null=True)
+    author = models.CharField(max_length=30)
+    document = models.FileField(upload_to='documents/', null=True, blank=True)
+    created_at = models.DateTimeField(default=timezone.now)
+
+
+    def __str__(self):
+        return str(self.title) or ''
+
+    def get_absolute_url(self):
+        return reverse("research")

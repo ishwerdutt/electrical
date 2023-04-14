@@ -91,31 +91,28 @@ user List
     </div>
   </div>
 </div>
-
-
 {% else %}
+
 <div class="md:w-3/4 px-4 py-8 md:ml-auto">
-        <h1 class="text-4xl font-bold mb-4 mx-14">Staff</h1>
+        <h1 class="text-4xl font-bold mb-4 mx-14"> Staff</h1>
     <div class="container1 mx-auto">
       <div class="grid grid-cols-2 md:grid-cols-2 lg:grid-cols-3 gap-8">
         {% for user in users %}
         <div class="card bg-gray-200 rounded-lg shadow-md overflow-hidden hover:shadow-xl transition duration-300">
           <div class="relative">
             {% if user.profile_image %}
-            <img class="w-full h-40 object-cover object-center" src="{{ user.profile_image.url }}" alt="{{ user.username }}">
+            <img class="w-full h-60 object-cover object-center" src="{{ user.profile_image.url }}" alt="{{ user.name }}">
             {% endif %}
           </div>
           <div class="p-2">
-            <h1 class="text-lg font-semibold text-gray-800"><a class="text-blue-500 hover:underline" href="{% url 'user_detail' username=user.username %}">{{ user.name }}</a></h1>
+            <h1 class="text-lg font-semibold text-gray-800">{{ user.name }}</h1>
             <p class="text-base font-medium text-gray-600 mb-2">Email:-{{ user.email }}</p>
-            {% if user.company %}
-            <p class="text-sm font-medium text-gray-600">Placed at:-{{ user.company }}</p>
-            {% endif %}
             {% if user.subjects %}
-            <p class="text-sm font-medium text-gray-600">Subjects:-{{ user.subjects }}</p>
+            <p class="text-sm font-medium text-gray-600">{{ user.subjects }}</p>
             {% endif %}
-           
-            
+            {% if user.company %}
+            <p class="text-sm font-medium text-gray-600">Designation:-{{ user.company }}</p>
+            {% endif %}
           </div>
         </div>
         {% endfor %}
@@ -123,6 +120,9 @@ user List
     </div>
   </div>
 </div>
+
+
+
 
 {% endif %}
 <style>

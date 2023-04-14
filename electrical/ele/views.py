@@ -117,6 +117,8 @@ class UserListView(ListView):
             queryset = CustomUser.objects.filter(role=RoleChoices.FACULTY.value)
         elif role == 'Alumni':
             queryset = CustomUser.objects.filter(role=RoleChoices.ALUMNI.value)
+        elif role == 'Staff':
+            queryset = CustomUser.objects.filter(role=RoleChoices.STAFF.value)
         else:
             queryset = CustomUser.objects.all()
 
