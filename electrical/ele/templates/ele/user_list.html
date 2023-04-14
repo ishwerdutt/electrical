@@ -28,7 +28,7 @@ user List
         </form>
       </div>
       <button class="block md:hidden bg-gray-200 text-gray-800 py-2 px-4 rounded-lg mb-4 w-full text-left">
-        Categories
+       
       </button>
       <ul class="md:block hidden">
         <li><a href="{% url 'faculty_list' %}" class="font-bold text-gray-900 hover:underline">Faculty</a></li>
@@ -69,9 +69,9 @@ user List
 {% elif request.resolver_match.url_name == 'faculty_list' %}
 
 <div class="md:w-3/4 px-4 py-8 md:ml-auto">
-        <h1 class="text-4xl font-bold mb-4 mx-14"> Faculities</h1>
+        <h1 class="text-4xl font-bold mb-4  px-10 mx-14"> Faculities</h1>
     <div class="container1 mx-auto">
-      <div class="grid grid-cols-2 md:grid-cols-2 lg:grid-cols-3 gap-8">
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
         {% for user in users %}
         <div class="card bg-gray-200 rounded-lg shadow-md overflow-hidden hover:shadow-xl transition duration-300">
           <div class="relative">
@@ -134,7 +134,7 @@ user List
      
     }
     .container1{
-      max-width: 95%;
+      max-width: 85%;
       
     }
 
