@@ -56,16 +56,8 @@
               <nav class="dropdown-menu absolute hidden bg-white border border-gray-300 rounded-md shadow-lg">
                 <a class="py-2 px-4 block whitespace-no-wrap hover:bg-gray-100 hover:underline" href="{% url 'guides' %}">How-to Guides</a>
                 <hr class="border-gray-200 my-2">
-                <a class="py-2 px-4 block whitespace-no-wrap hover:bg-gray-100" href="#">Competitive Examinations</a>
-                <a class="py-2 px-4 block whitespace-no-wrap hover:bg-gray-100" href="#">Student Guides</a>
-                <hr class="border-gray-200 my-2">
-                <a class="py-2 px-4 block whitespace-no-wrap hover:bg-gray-100" href="#">Institute Formalities</a>
-                <a class="py-2 px-4 block whitespace-no-wrap hover:bg-gray-100" href="#">Institute Facilities</a>
-                <hr class="border-gray-200 my-2">
-                <a class="py-2 px-4 block whitespace-no-wrap hover:bg-gray-100" href="#">Internet and Computers</a>
-                <hr class="border-gray-200 my-2">
-                <a class="py-2 px-4 block whitespace-no-wrap hover:bg-gray-100" href="#">Student Life</a>
-                <a class="py-2 px-4 block whitespace-no-wrap hover:bg-gray-100" href="#">Programming Languages</a>
+                <a class="py-2 px-4 block whitespace-no-wrap hover:bg-gray-100 hover:underline" href="{% url 'guides' %}">Opportunities</a>
+
               </nav>
             </div>
             <div class="dropdown">
@@ -80,10 +72,12 @@
               </div>
             
             <a href="{% url 'login' %}" class="text-gray-600 font-semibold hover:text-gray-900 hover:underline">Sign In</a>
-            {% if user.is_authenticated %}
+            {% if request.user.is_authenticated %}
             <a href="{% url 'logout' %}" class="text-red-600 hover:text-gray-900">Logout</a>
             {% endif %}
-           
+            {% if request.user.is_authenticated %}
+            <a href="{% url 'user_profile' username=user.username  %}" class=" text-green-600 font-bold hover:text-green-900">Profile</a>
+            {% endif %}
           </div>
         </div>
       </nav>
@@ -95,7 +89,7 @@
         </button>
       </div>
   <!-- Mobile menu -->
-  <div id="mobile-menu" class="md:hidden">
+  <div id="mobile-menu" class="md:hidden flex justify-center">
     <ul class="p-4 space-y-2">
       <li><a href="{% url 'index' %}" class="text-xl font-bold">EE</a></li>
       <li><a href="{% url 'acedemics' %}" class="block text-gray-700 hover:text-gray-900">Academics</a></li>
@@ -108,34 +102,27 @@
           <nav class="dropdown-menu absolute hidden bg-white border border-gray-300 rounded-md shadow-lg">
             <a class="py-2 px-4 block whitespace-no-wrap hover:bg-gray-100 hover:underline" href="{% url 'guides' %}">How-to Guides</a>
             <hr class="border-gray-200 my-2">
-            <a class="py-2 px-4 block whitespace-no-wrap hover:bg-gray-100" href="#">Competitive Examinations</a>
-            <a class="py-2 px-4 block whitespace-no-wrap hover:bg-gray-100" href="#">Student Guides</a>
-            <hr class="border-gray-200 my-2">
-            <a class="py-2 px-4 block whitespace-no-wrap hover:bg-gray-100" href="#">Institute Formalities</a>
-            <a class="py-2 px-4 block whitespace-no-wrap hover:bg-gray-100" href="#">Institute Facilities</a>
-            <hr class="border-gray-200 my-2">
-            <a class="py-2 px-4 block whitespace-no-wrap hover:bg-gray-100" href="#">Internet and Computers</a>
-            <hr class="border-gray-200 my-2">
-            <a class="py-2 px-4 block whitespace-no-wrap hover:bg-gray-100" href="#">Student Life</a>
-            <a class="py-2 px-4 block whitespace-no-wrap hover:bg-gray-100" href="#">Programming Languages</a>
+            <a class="py-2 px-4 block whitespace-no-wrap hover:bg-gray-100 hover:underline" href="{% url 'guides' %}">Opportunities</a>
+
+           
           </nav>
         </div>
-        <li><a href="{% url 'login' %}" class="text-gray-600 hover:text-gray-900">Sign In</a> </li> 
-        <li>
-          {% if user.is_authenticated %}
-          <a href="{% url 'logout' %}" class="text-red-600 hover:text-gray-900">Logout</a>
-          {% endif %}
-          <div class="dropdown">
-            <button class="text-gray-800 hover:text-gray-900 py-2 text-sm font-medium">People</button>
-            <nav class="dropdown-menu absolute hidden text-gray-200 pt-1">
-              <a class="rounded-t bg-gray-800 hover:bg-gray-900 py-2 px-4 block whitespace-no-wrap" href="{% url 'faculty_list' %}">Faculty</a>
-              <a class="bg-gray-800 hover:bg-gray-900 py-2 px-4 block whitespace-no-wrap" href="{% url 'alumni_list' %}">Alumni</a>
-              <a class="rounded-b bg-gray-800 hover:bg-gray-900 py-2 px-4 block whitespace-no-wrap" href="{% url 'user_list' %}">Students</a>
-            
-
-
+        <div class="dropdown">
+          <button class="text-gray-800 hover:text-gray-900 hover:underline rounded-md py-2 text-sm font-medium">
+            People <i class="fas fa-chevron-down"></i>
+          </button>
+            <nav class="dropdown-menu absolute hidden bg-white border border-gray-300 rounded-md shadow-lg">
+              <a class="py-2 px-4 block whitespace-no-wrap hover:bg-gray-100" href="{% url 'faculty_list' %}">Faculty</a>
+              <a class="py-2 px-4 block whitespace-no-wrap hover:bg-gray-100" href="{% url 'alumni_list' %}">Alumni</a>
+              <a class="py-2 px-4 block whitespace-no-wrap hover:bg-gray-100" href="{% url 'user_list' %}">Students</a>
             </nav>
           </div>
+        <li><a href="{% url 'login' %}" class="text-gray-600 hover:text-gray-900">Sign In</a> </li> 
+        <li>
+          {% if request.user.is_authenticated %}
+          <a href="{% url 'logout' %}" class="text-red-600 hover:text-gray-900">Logout</a>
+          {% endif %}
+         
         </li> 
     </ul>
   </div>

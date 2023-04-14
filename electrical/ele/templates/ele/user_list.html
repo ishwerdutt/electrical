@@ -9,7 +9,7 @@ user List
 
 
 {% block content %}
-<div class="flex flex-col md:flex-row md:justify-between">
+<div class="flex flex-col md:flex-row md:justify-between mt-10">
     <div class="w-full md:w-1/4 p-4 rounded-r-lg md:rounded-r-none md:fixed md:left-0 md:top-30 h-screen md:h-20 md:bg-transparent z-10">
       <h2 class="text-lg text-gray-900 font-semibold mb-2">Search Users</h2>
       <div class="relative">
@@ -52,7 +52,7 @@ user List
             {% endif %}
           </div>
           <div class="p-2">
-            <h1 class="text-lg font-semibold text-gray-800"><a class="text-blue-500 hover:underline" href="{% url 'user_profile' username=user.username %}">{{ user.username }}</a></h1>
+            <h1 class="text-lg font-semibold text-gray-800"><a class="text-blue-500 hover:underline" href="{% url 'user_detail' username=user.username %}">{{ user.name }}</a></h1>
             <p class="text-base font-medium text-gray-600 mb-2">Placed at:-{{ user.company }}</p>
             <p class="text-sm font-medium text-gray-600">Subjects:-{{ user.subjects }}</p>
             <p class="text-base font-medium text-gray-600 mb-2">Email:-{{ user.email }}</p>
@@ -106,7 +106,7 @@ user List
             {% endif %}
           </div>
           <div class="p-2">
-            <h1 class="text-lg font-semibold text-gray-800"><a class="text-blue-500 hover:underline" href="{% url 'user_profile' username=user.username %}">{{ user.username }}</a></h1>
+            <h1 class="text-lg font-semibold text-gray-800"><a class="text-blue-500 hover:underline" href="{% url 'user_detail' username=user.username %}">{{ user.name }}</a></h1>
             <p class="text-base font-medium text-gray-600 mb-2">Email:-{{ user.email }}</p>
             {% if user.company %}
             <p class="text-sm font-medium text-gray-600">Placed at:-{{ user.company }}</p>
