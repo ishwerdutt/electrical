@@ -139,6 +139,15 @@ STATIC_ROOT =os.path.join(BASE_DIR, 'staticfiles')
 MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
+
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+EMAIL_HOST = 'smtp-relay.sendinblue.com'
+EMAIL_PORT = 587
+EMAIL_USE_TLS = True
+EMAIL_HOST_USER = 'kumarkulvinder364@gmail.com'
+EMAIL_HOST_PASSWORD = '7g81G92sUMDLrE6V'
+DEFAULT_FROM_EMAIL = 'kumarkulvinder364@gmail.com'
+
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.1/ref/settings/#default-auto-field
 

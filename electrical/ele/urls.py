@@ -11,6 +11,7 @@ urlpatterns = [
     path('research/', views.research, name="research"),
     path('faculty/posts/', PostListView.as_view(), name='faculty_posts'),
     path('signup/', signup, name='signup'),
+    #path('verify-email/<uidb64>/<token>/', verify_email, name='verify_email'),
     path('login/', CustomLoginView.as_view(), name='login'),
     path('logout/', views.logout_view, name = "logout"),
     path('profile/<str:username>/', views.user_profile, name='user_profile'),

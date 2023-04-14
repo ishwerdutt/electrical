@@ -1,0 +1,16 @@
+
+
+
+{% load static %}
+
+<p>Hi {{ user.username }},</p>
+
+<p>Thanks for signing up for our website. To verify your email address, please click the link below:</p>
+
+<p><a href="{{ domain }}{% url 'verify_email' uidb64=uid token=token %}">Verify email address</a></p>
+
+<p>If you did not sign up for our website, please ignore this email.</p>
+
+<p>Thanks,</p>
+<p>The Website Team</p>
+

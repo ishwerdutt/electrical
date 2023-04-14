@@ -6,8 +6,9 @@
 
 {% block content %}
 
-<div class="flex flex md:flex-row md:justify-between mt-10">
-  <div class="w-full md:w-1/4 p-4 rounded-r-lg md:rounded-r-none md:fixed md:left-0 md:top-20 h-screen md:h-10 md:bg-transparent z-10">
+<div class="container mx-auto px-4 py-8">
+  <div class="flex flex-wrap -mx-2">
+    <div class="w-full md:w-1/4 px-2 md:fixed">
     <!-- Add a higher z-index value to ensure that the sidebar is positioned above other elements -->
 
     <h2 class="text-lg text-gray-900 font-semibold mb-2">Search</h2>
@@ -21,8 +22,10 @@
       </button>
     </div>
 
-    <h2 class="text-lg text-gray-900 font-semibold my-4">Categories</h2>
-    <ul style="list-style-type:disc; padding-left: 4%;">
+    <button class="block md:hidden bg-gray-200 text-gray-800 py-2 px-4 rounded-lg mb-4 w-full text-left">
+      Categories
+    </button>
+    <ul class="md:block hidden">
       <li><a href="#" class="text-l font-bold text-gray-900 hover:underline">Educational</a></li>
       <li><a href="#" class="font-bold text-gray-900 hover:underline">Informational</a></li>
       <li><a href="#" class="font-bold text-gray-900 hover:underline">Faculty</a></li>
