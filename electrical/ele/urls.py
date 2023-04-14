@@ -8,6 +8,7 @@ urlpatterns = [
     path('acedemics/', views.academics, name='acedemics'),
     path('undergraduateprogrammes/', views.under_graduate_programmes, name='undergraduateprogrammes'),
     path('labs/',LabView.as_view(), name = "labs"),
+    path('devs/', views.dev, name = "dev"),
     path('research/', views.research, name="research"),
     path('p_e/', views.p_e, name="power_electronics"),
     path('s_p/', views.s_p, name="signal_processing"),
@@ -22,7 +23,7 @@ urlpatterns = [
     path('users/', UserListView.as_view(), name='user_list'),
     path('faculty/', UserListView.as_view(), {'role': 'Faculty'}, name='faculty_list'),
     path('alumni/', UserListView.as_view(), {'role': 'Alumni'}, name='alumni_list'),
-    path('staff/', UserListView.as_view(), {'role': 'Staff'}, name='Staff_list'),
+    path('staff/', UserListView.as_view(), {'role': 'Staff'}, name='staff_list'),
 
     path('create_post/', views.create_post , name='create_post'),
     path('<int:pk>/', PostDetailView.as_view(), name='post_detail'),

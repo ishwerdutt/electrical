@@ -49,17 +49,8 @@
             <a href="{% url 'acedemics' %}" class="text-xl text-gray-700 font-semibold hover:text-gray-900 hover:underline">Academics</a>
             <a href="{% url 'research' %}" class="text-xl text-gray-700 font-semibold hover:text-gray-900 hover:underline">Research</a>
             <a href="{% url 'faculty_posts' %}" class="text-xl text-gray-700 font-semibold hover:text-gray-900 hover:underline">Articles</a>
-            <div class="dropdown">
-              <button class="text-xl text-gray-700 font-semibold hover:text-gray-900 hover:underline rounded-md py-2 text-sm font-medium">
-                Guides <i class="fas fa-chevron-down"></i>
-              </button>
-              <nav class="dropdown-menu absolute hidden bg-white border border-gray-300 rounded-md shadow-lg">
-                <a class="py-2 px-4 block whitespace-no-wrap hover:bg-gray-100 hover:underline" href="{% url 'guides' %}">How-to Guides</a>
-                <hr class="border-gray-200 my-2">
-                <a class="py-2 px-4 block whitespace-no-wrap hover:bg-gray-100 hover:underline" href="{% url 'guides' %}">Opportunities</a>
-
-              </nav>
-            </div>
+            <a class="text-xl text-gray-700 font-semibold hover:text-gray-900 hover:underline" href="{% url 'guides' %}">Guides</a>
+           
             <div class="dropdown">
               <button class="text-xl text-gray-700 font-semibold hover:text-gray-900 hover:underline rounded-md py-2 text-sm font-medium">
                 People <i class="fas fa-chevron-down"></i>
@@ -67,7 +58,7 @@
                 <nav class="dropdown-menu absolute hidden bg-white border border-gray-300 rounded-md shadow-lg">
                   <a class="py-2 px-4 block whitespace-no-wrap hover:bg-gray-100" href="{% url 'faculty_list' %}">Faculty</a>
                   <a class="py-2 px-4 block whitespace-no-wrap hover:bg-gray-100" href="{% url 'alumni_list' %}">Alumni</a>
-                  <a class="py-2 px-4 block whitespace-no-wrap hover:bg-gray-100" href="{% url 'user_list' %}">Students</a>
+                  <a class="py-2 px-4 block whitespace-no-wrap hover:bg-gray-100" href="{% url 'dev' %}">Developers</a>
                 </nav>
               </div>
             
@@ -93,20 +84,10 @@
     <ul class="p-4 space-y-2">
       <li><a href="{% url 'index' %}" class="text-xl font-bold">EE</a></li>
       <li><a href="{% url 'acedemics' %}" class="block text-xl text-gray-700 hover:text-gray-900">Academics</a></li>
-      <li><a href="{% url 'guides' %}" class="text-xl text-gray-700 hover:text-gray-900">Research</a></li>
+      <li><a href="{% url 'research' %}" class="text-xl text-gray-700 hover:text-gray-900">Research</a></li>
         <li><a href="{% url 'faculty_posts' %}" class="text-xl text-gray-700 hover:text-gray-900">Articles</a></li>
-        <div class="dropdown">
-          <button class="text-xl text-gray-700 hover:text-gray-900 hover:underline rounded-md py-2">
-            Guides <i class="fas fa-chevron-down"></i>
-          </button>
-          <nav class="dropdown-menu absolute hidden bg-white border border-gray-300 rounded-md shadow-lg">
-            <a class="py-2 px-4 block whitespace-no-wrap hover:bg-gray-100 hover:underline" href="{% url 'guides' %}">How-to Guides</a>
-            <hr class="border-gray-200 my-2">
-            <a class="py-2 px-4 block whitespace-no-wrap hover:bg-gray-100 hover:underline" href="{% url 'guides' %}">Opportunities</a>
-
-           
-          </nav>
-        </div>
+        <li> <a class="py-2 px-4 block whitespace-no-wrap hover:bg-gray-100 hover:underline" href="{% url 'guides' %}">Guides</a></li>
+      
         <div class="dropdown">
           <button class="text-xl text-gray-700 hover:text-gray-900 hover:underline rounded-md py-2 ">
             People <i class="fas fa-chevron-down"></i>
@@ -114,7 +95,7 @@
             <nav class="dropdown-menu absolute hidden bg-white border border-gray-300 rounded-md shadow-lg">
               <a class="py-2 px-4 block whitespace-no-wrap hover:bg-gray-100" href="{% url 'faculty_list' %}">Faculty</a>
               <a class="py-2 px-4 block whitespace-no-wrap hover:bg-gray-100" href="{% url 'alumni_list' %}">Alumni</a>
-              <a class="py-2 px-4 block whitespace-no-wrap hover:bg-gray-100" href="{% url 'user_list' %}">Students</a>
+              <a class="py-2 px-4 block whitespace-no-wrap hover:bg-gray-100" href="{% url 'dev' %}">Developers</a>
             </nav>
           </div>
         <li><a href="{% url 'login' %}" class="text-xl text-gray-700 hover:text-gray-900">Sign In</a> </li> 

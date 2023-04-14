@@ -14,6 +14,9 @@ from django.views.generic import TemplateView
 
 def index(request):
     return render(request, 'ele/index.html')
+    
+def dev(request):
+    return render(request, 'ele/dev.html')
 
 def p_e(request):
     return render(request, 'ele/Power_Electronics.html')
