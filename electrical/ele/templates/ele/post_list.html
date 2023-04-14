@@ -7,20 +7,30 @@
 {% block content %}
 
 <div class="container mx-auto px-4 py-8">
-  <div class="flex flex-wrap -mx-2">
+  <div class="flex flex-wrap mx-2">
     <div class="w-full md:w-1/4 px-2 md:fixed">
     <!-- Add a higher z-index value to ensure that the sidebar is positioned above other elements -->
 
     <h2 class="text-lg text-gray-900 font-semibold mb-2">Search</h2>
     <div class="relative">
-      <input type="text" class="border border-gray-600 p-2 w-full rounded-full" placeholder="Search articles...">
-      <button class="absolute right-2 top-2 text-gray-600 hover:text-gray-700">
-        <svg class="w-5 h-5" fill="none" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24" stroke="currentColor">
-          <path d="M15.5 15.5L20 20"></path>
-          <path d="M10 17C14.4183 17 18 13.4183 18 9C18 4.58172 14.4183 1 10 1C5.58172 1 2 4.58172 2 9C2 13.4183 5.58172 17 10 17Z"></path>
-        </svg>
-      </button>
+      <form method="GET" action="{% url 'faculty_posts' %}">
+        {% csrf_token %}
+        <div class="flex items-center bg-white border border-gray-600 border-2 p-2 w-60 rounded-full">
+          <input class="appearance-none bg-white border-none w-full text-gray-700 leading-tight focus:outline-none" type="text" placeholder="Search users" aria-label="Search" name="query" value="{{ request.GET.query }}">
+          <button class="flex-wrap right-2 top-2 text-gray-600 hover:text-gray-700" type="submit">
+              <svg class="w-4 h-4" fill="none" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24" stroke="currentColor">
+                  <path d="M15.5 15.5L20 20"></path>
+                  <path d="M10 17C14.4183 17 18 13.4183 18 9C18 4.58172 14.4183 1 10 1C5.58172 1 2 4.58172 2 9C2 13.4183 5.58172 17 10 17Z"></path>
+                </svg>
+          </button>
+        </div>
+      </form>
     </div>
+    <button class="block md:hidden bg-gray-200 text-gray-800 py-2 px-4 rounded-lg mb-4 w-full text-left">
+     
+    </button>
+      
+ 
 
     <button class="block md:hidden bg-gray-200 text-gray-800 py-2 px-4 rounded-lg mb-4 w-full text-left">
       Categories
@@ -32,6 +42,7 @@
       <li><a href="#" class="font-bold text-gray-900 hover:underline">Alumni</a></li>
     </ul>
   </div>
+</div>
 </div>
 
 <div class="md:w-3/4 px-4 py-8 md:ml-auto">

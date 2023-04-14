@@ -15,6 +15,16 @@ from django.views.generic import TemplateView
 def index(request):
     return render(request, 'ele/index.html')
 
+def p_e(request):
+    return render(request, 'ele/Power_Electronics.html')
+
+def s_p(request):
+    return render(request, 'ele/signal_processing.html')
+
+
+def c_s(request):
+    return render(request, 'ele/control_system.html')
+
 
 def labs(request):
     return render(request, 'ele/labs.html')
@@ -44,6 +54,15 @@ def user_detail(request, username):
 class PostListView(ListView):
     model = Post
     template_name = 'ele/post_list.html'
+    paginate_by = 12
+
+    def get_queryset(self):
+        queryset = super().get_queryset()
+        search_query = self.request.GET.get('search')
+        if search_query:
+            queryset = queryset.filter(title__icontains=search_query)
+        return queryset
+
 
 class LabView(ListView):
     model = Lab
