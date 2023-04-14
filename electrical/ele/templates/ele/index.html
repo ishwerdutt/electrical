@@ -10,23 +10,17 @@ Welcome to the department of electrical engineering
 
 {% block content %}
 
-<br>
-<br><br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<header class="flex-row items-center justify-center h-screen">
-    <div class="text-left mx-10">
-      <h1 class="text-4xl bg-gradient-to-r from-blue-800 via-purple-800 to-teal-400 bg-clip-text text-transparent font-manrope mb-3 py-3 text-left">Department of Electrical Engineering</h1>
-      <p class="text-2xl text-black font-manrope mb-10 text-left">Welcome to the department of Electrical Engineering</p>
-      <a href="https://nith.ac.in/" class="bg-green-700 hover:bg-green-900 text-white font-bold py-2 px-6 rounded-full ml-3">Learn More</a>
-      <a href="{% url 'signup' %}" class="text-black border border-gray-400 font-bold py-2 px-6 rounded-full ml-3">
-        Register Now
-      </a>    
-    </div>    
+
+<header class="flex flex-col items-center justify-center h-screen bg-gray-100">
+    <h1 class="text-4xl bg-gradient-to-r from-blue-800 via-purple-800 to-teal-400 bg-clip-text text-transparent font-manrope mb-3 py-3">Department of Electrical Engineering</h1>
+    <p class="text-2xl text-black font-manrope mb-10">Welcome to the Department of Electrical Engineering</p>
+    <div class="flex flex-col items-center justify-center">
+      <img src="/media/images/dep.png" alt="Department of Electrical Engineering" class="rounded-full h-60 w-60 mx-auto mb-4">
+      <a href="https://nith.ac.in/" class="bg-green-700 hover:bg-green-900 text-white font-bold py-3 px-12 rounded-full mb-10">Learn More</a>
+    </div> 
   </header>
+  
+  
 <footer>
   <div class="mx-auto w-full max-w-screen-xl p-4 py-6 lg:py-8">
       <div class="md:flex md:justify-between">

@@ -24,6 +24,7 @@ Labs
           </div>
         </div>
         <div class="p-4">
+          <h3 class="text-2xl font-bold mb-4">{{ lab.lab_name }}</h3>
           <p class="text-base font-medium text-gray-600 mb-2">{{ lab.description|safe }}</p>
           {% if lab.lab_details %}
           <a href="{{ lab.lab_details.url }}" class="text-blue-500 font-medium hover:underline block mb-2">Download Document</a>

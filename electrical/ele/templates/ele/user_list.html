@@ -9,15 +9,18 @@ user List
 
 
 {% block content %}
+
+
+{% if request.resolver_match.url_name == 'alumni_list' %}
 <div class="container mx-auto px-4 py-8">
   <div class="flex flex-wrap mx-2">
     <div class="w-full md:w-1/4 px-2 md:fixed">
-      <h2 class="text-lg text-gray-900 font-semibold mb-2">Search Users</h2>
+      <h2 class="text-lg text-gray-900 font-semibold mb-2">Search Alumni</h2>
       <div class="relative">
-        <form method="GET" action="{% url 'user_list' %}">
+        <form method="GET" action="{% url 'alumni_list' %}">
           {% csrf_token %}
           <div class="flex items-center bg-white border border-gray-600 border-2 p-2 w-60 rounded-full">
-            <input class="appearance-none bg-white border-none w-full text-gray-700 leading-tight focus:outline-none" type="text" placeholder="Search users" aria-label="Search" name="query" value="{{ request.GET.query }}">
+            <input class="appearance-none bg-white border-none w-full text-gray-700 leading-tight focus:outline-none" type="text" placeholder="Search Alumni" aria-label="Search" name="query" value="{{ request.GET.query }}">
             <button class="flex-wrap right-2 top-2 text-gray-600 hover:text-gray-700" type="submit">
                 <svg class="w-5 h-5" fill="none" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24" stroke="currentColor">
                     <path d="M15.5 15.5L20 20"></path>
@@ -38,8 +41,6 @@ user List
   </div>
 </div>
 
-
-{% if request.resolver_match.url_name == 'alumni_list' %}
 <div class="md:w-3/4 px-4 py-8 md:ml-auto">
         <h1 class="text-4xl font-bold mb-4 mx-14"> Alumnies</h1>
     <div class="container1 mx-auto">
@@ -67,21 +68,50 @@ user List
 </div>
 
 {% elif request.resolver_match.url_name == 'faculty_list' %}
+<div class="container mx-auto px-4 py-8">
+  <div class="flex flex-wrap mx-2">
+    <div class="w-full md:w-1/4 px-2 md:fixed">
+      <h2 class="text-lg text-gray-900 font-semibold mb-2">Search Faculty</h2>
+      <div class="relative">
+        <form method="GET" action="{% url 'faculty_list' %}">
+          {% csrf_token %}
+          <div class="flex items-center bg-white border border-gray-600 border-2 p-2 w-60 rounded-full">
+            <input class="appearance-none bg-white border-none w-full text-gray-700 leading-tight focus:outline-none" type="text" placeholder="Search faculty" aria-label="Search" name="query" value="{{ request.GET.query }}">
+            <button class="flex-wrap right-2 top-2 text-gray-600 hover:text-gray-700" type="submit">
+                <svg class="w-5 h-5" fill="none" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24" stroke="currentColor">
+                    <path d="M15.5 15.5L20 20"></path>
+                    <path d="M10 17C14.4183 17 18 13.4183 18 9C18 4.58172 14.4183 1 10 1C5.58172 1 2 4.58172 2 9C2 13.4183 5.58172 17 10 17Z"></path>
+                  </svg>
+            </button>
+          </div>
+        </form>
+      </div>
+      <button class="block md:hidden bg-gray-200 text-gray-800 py-2 px-4 rounded-lg mb-4 w-full text-left">
+       
+      </button>
+      <ul class="md:block hidden">
+        <li><a href="{% url 'faculty_list' %}" class="font-bold text-gray-900 hover:underline">Faculty</a></li>
+        <li><a href="{% url 'alumni_list' %}" class="font-bold text-gray-900 hover:underline">Alumni</a></li>
+      </ul>
+    </div>
+  </div>
+</div>
+
 
 <div class="md:w-3/4 px-4 py-8 md:ml-auto">
-        <h1 class="text-4xl font-bold mb-4  px-10 mx-14"> Faculities</h1>
+        <h1 class="text-4xl font-bold mb-4  px-10 mx-14"> Faculties</h1>
     <div class="container1 mx-auto">
       <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
         {% for user in users %}
         <div class="card bg-gray-200 rounded-lg shadow-md overflow-hidden hover:shadow-xl transition duration-300">
           <div class="relative">
             {% if user.profile_image %}
-            <img class="w-full h-60 object-cover object-center" src="{{ user.profile_image.url }}" alt="{{ user.name }}">
+            <img class="w-full h-70 object-cover object-center" src="{{ user.profile_image.url }}" alt="{{ user.name }}">
             {% endif %}
           </div>
           <div class="p-2">
             <h1 class="text-lg font-semibold text-gray-800"><a class="text-blue-500 hover:underline" href="{% url 'user_detail' username=user.username %}">{{ user.name }}</a></h1>
-            <p class="text-sm font-medium text-gray-600">Subjects:-{{ user.subjects }}</p>
+            <p class="text-sm font-medium text-gray-600">Specializations:-{{ user.subjects }}</p>
             <p class="text-base font-medium text-gray-600 mb-2">Email:-{{ user.email }}</p>
             
           </div>
@@ -92,6 +122,35 @@ user List
   </div>
 </div>
 {% else %}
+<div class="container mx-auto px-4 py-8">
+  <div class="flex flex-wrap mx-2">
+    <div class="w-full md:w-1/4 px-2 md:fixed">
+      <h2 class="text-lg text-gray-900 font-semibold mb-2">Search Staff</h2>
+      <div class="relative">
+        <form method="GET" action="{% url 'staff_list' %}">
+          {% csrf_token %}
+          <div class="flex items-center bg-white border border-gray-600 border-2 p-2 w-60 rounded-full">
+            <input class="appearance-none bg-white border-none w-full text-gray-700 leading-tight focus:outline-none" type="text" placeholder="Search staff" aria-label="Search" name="query" value="{{ request.GET.query }}">
+            <button class="flex-wrap right-2 top-2 text-gray-600 hover:text-gray-700" type="submit">
+                <svg class="w-5 h-5" fill="none" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24" stroke="currentColor">
+                    <path d="M15.5 15.5L20 20"></path>
+                    <path d="M10 17C14.4183 17 18 13.4183 18 9C18 4.58172 14.4183 1 10 1C5.58172 1 2 4.58172 2 9C2 13.4183 5.58172 17 10 17Z"></path>
+                  </svg>
+            </button>
+          </div>
+        </form>
+      </div>
+      <button class="block md:hidden bg-gray-200 text-gray-800 py-2 px-4 rounded-lg mb-4 w-full text-left">
+       
+      </button>
+      <ul class="md:block hidden">
+        <li><a href="{% url 'faculty_list' %}" class="font-bold text-gray-900 hover:underline">Faculty</a></li>
+        <li><a href="{% url 'alumni_list' %}" class="font-bold text-gray-900 hover:underline">Alumni</a></li>
+      </ul>
+    </div>
+  </div>
+</div>
+
 
 <div class="md:w-3/4 px-4 py-8 md:ml-auto">
         <h1 class="text-4xl font-bold mb-4 mx-14"> Staff</h1>

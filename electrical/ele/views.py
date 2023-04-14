@@ -160,7 +160,7 @@ def create_post(request):
             post = form.save(commit=False)
             post.author = request.user
             post.save()
-            return redirect('user_profile', username = post.author)
+            return redirect('user_profile', username = request.user.username)
     else:
         form = PostForm()
     return render(request, 'ele/add_post.html', {'form': form})
@@ -177,6 +177,9 @@ def logout_view(request):
 class PostDetailView(DetailView):
     model = Post
     template_name = 'ele/post_detail.html'
+
+
+
 
 # searching users
 
