@@ -49,13 +49,12 @@ user List
         <div class="card bg-gray-200 rounded-lg shadow-md hover:shadow-xl transition duration-300">
           <div class="relative">
             {% if user.profile_image %}
-            <img class="w-full h-40 object-cover object-center" src="{{ user.profile_image.url }}" alt="{{ user.username }}">
+            <img class="w-full h-70 object-cover object-center" src="{{ user.profile_image.url }}" alt="{{ user.username }}">
             {% endif %}
           </div>
           <div class="p-2">
             <h1 class="text-lg font-semibold text-gray-800"><a class="text-blue-500 hover:underline" href="{% url 'user_detail' username=user.username %}">{{ user.name }}</a></h1>
             <p class="text-base font-medium text-gray-600 mb-2">Placed at:-{{ user.company }}</p>
-            <p class="text-sm font-medium text-gray-600">Subjects:-{{ user.subjects }}</p>
             <p class="text-base font-medium text-gray-600 mb-2">Email:-{{ user.email }}</p>
             <p class="text-base font-medium text-gray-600 mb-2">Placed at:-{{ user.company }}</p>
             
