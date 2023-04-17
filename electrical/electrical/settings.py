@@ -25,7 +25,7 @@ SECRET_KEY = os.environ.get('DJANGO_SECRET_KEY', "django-insecure-ergwijf@1lufzv
 
 # SECURITY WARNING: don't run with debug turned on in production!
 #DEBUG = os.environ.get('DJANGO_DEBUG', '') == 'True'
-DEBUG = 'RENDER' not in os.environ
+DEBUG = DEBUG = 'RENDER' not in os.environ
 ALLOWED_HOSTS = ['*']
 
 
@@ -82,7 +82,7 @@ AUTHENTICATION_BACKENDS = [
 if os.environ.get('DATABASE_URL'): 
 
     DATABASES = {
-        'default' : dj_database_url.parse(os.environ.get("DATABASE_URL"))
+        'default' : 'dj_database_url.config(conn_max_age=500)'
     }
 
 else:
