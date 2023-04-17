@@ -82,7 +82,7 @@ AUTHENTICATION_BACKENDS = [
 if os.environ.get('DATABASE_URL'): 
 
     DATABASES = {
-        'default' : 'dj_database_url.config(conn_max_age=500)'
+        'default' : dj_database_url.parse(os.environ.get("DATABASE_URL"))
     }
 
 else:
