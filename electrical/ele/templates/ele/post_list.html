@@ -36,17 +36,17 @@
       Categories
     </button>
     <ul class="md:block hidden">
-      <li><a href="#" class="text-l font-bold text-gray-900 hover:underline">Educational</a></li>
-      <li><a href="#" class="font-bold text-gray-900 hover:underline">Informational</a></li>
-      <li><a href="#" class="font-bold text-gray-900 hover:underline">Faculty</a></li>
-      <li><a href="#" class="font-bold text-gray-900 hover:underline">Alumni</a></li>
+      <li><a href="#" class="text-l font-bold text-gray-50 hover:underline">Educational</a></li>
+      <li><a href="#" class="font-bold text-gray-50 hover:underline">Informational</a></li>
+      <li><a href="#" class="font-bold text-gray-50 hover:underline">Faculty</a></li>
+      <li><a href="#" class="font-bold text-gray-50 hover:underline">Alumni</a></li>
     </ul>
   </div>
 </div>
 </div>
 
 <div class="md:w-3/4 px-4 py-8 md:ml-auto">
-      <h1 class="text-4xl font-bold mb-4 mx-8"> Articles </h1>
+      <h1 class="text-4xl mb-4 mx-8 text-white font-medium"> Articles </h1>
     <div class="container1 mx-auto">
       <div class="grid grid-cols-2 md:grid-cols-2 lg:grid-cols-3 gap-8">
         {% for post in object_list %}
@@ -58,7 +58,7 @@
             </div>
           </div>
           <div class="p-2">
-            <h1 class="text-lg font-semibold text-gray-800"><a href="{% url 'post_detail' pk=post.pk %}" class="text-blue-500 hover:underline">{{ post.title }}</a></h1>
+            <h1 class="text-lg font-semibold text-gray-800"><a href="{% url 'post_detail' pk=post.pk %}" class="text-blue-900 hover:underline">{{ post.title }}</a></h1>
             <p class="text-sm font-medium text-gray-600">By {{ post.author.name }}</p>
             <p class="text-base font-medium text-gray-600 mb-2">{{ post.short_description }}</p>
             

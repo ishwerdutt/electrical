@@ -179,7 +179,7 @@ class PostDetailView(DetailView):
     template_name = 'ele/post_detail.html'
 
 
-def Ishu(reuqest):
+class Ishu(reuqest):
     return HttpResponse("This is ishwer dutt")
 
 # searching users

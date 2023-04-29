@@ -11,6 +11,8 @@
     
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.carousel.min.css" />
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.theme.default.min.css" />
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Manrope">
+
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/owl.carousel.min.js"></script>
 
@@ -34,40 +36,102 @@
   z-index: 2;
 }
 
+   body {
+  background-color:#0A2640; /* dark blue color */
+  position: relative;
+}
+
+body::before {
+  content: "";
+  stroke: none;
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 500px;
+height: 500px;
+  background: rgba(28, 61, 91, 0.49); /* skyblue color */
+  border-radius: 0 0 0 100%;
+  pointer-events: none; /* added rule to make links accessible */
+  
+}
+
+
   </style>
 </head>
 
-<body class="bg-gray-200">
+<body>
   <!-- Content goes here -->
-  <div class="bg-gray-300">
+  <div class="container">
+  <div class="text-4xl font-bold text-center text-white">
 
       <nav class="container  mx-auto md:px-3 py-3 navbar p-6">
         <div class="flex items-center justify-between">
           <div class="text-black hidden md:flex">
             <img src="\media\images\nith_logo.jpeg" alt="Developer 1" class="rounded-full h-10 w-auto mx-3">
             
-              <a href="{% url 'index' %}" class="text-xl font-bold mt-1">Department of Electrical Engineering</a>
+              <a href="{% url 'index' %}" class="text-xl text-white font-monorope mt-1">Department of Electrical Engineering</a>
           </div>
   
           <div class="flex items-center space-x-3 md:space-x-4 hidden md:flex">
-            <a href="{% url 'acedemics' %}" class="text-xl text-gray-700 font-semibold hover:text-gray-900 hover:underline">Academics</a>
-            <a href="{% url 'labs' %}" class="text-xl text-gray-700 font-semibold hover:text-gray-900 hover:underline">Labs</a>
-            <a href="{% url 'research' %}" class="text-xl text-gray-700 font-semibold hover:text-gray-900 hover:underline">Research</a>
-            <a href="{% url 'faculty_posts' %}" class="text-xl text-gray-700 font-semibold hover:text-gray-900 hover:underline">Articles</a>
+            <a href="{% url 'acedemics' %}" class="text-xl text-white hover:text-gray-200 font-medium">Academics</a>
+            <a href="{% url 'labs' %}" class="text-xl text-white hover:text-gray-200 font-medium">Labs</a>
+            <a href="{% url 'research' %}" class="text-xl text-white hover:text-gray-200 font-medium">Research</a>
+            <a href="{% url 'faculty_posts' %}" class="text-xl text-white hover:text-gray-200 font-medium">Articles</a>
             <!--<a class="text-xl text-gray-700 font-semibold hover:text-gray-900 hover:underline" href="{% url 'guides' %}">Guides</a>-->
            
             <div class="dropdown">
-              <button class="text-xl text-gray-700 font-semibold hover:text-gray-900 hover:underline rounded-md py-2 text-sm font-medium">
+              <button class="text-xl text-white hover:text-gray-200 font-medium">
                 People <i class="fas fa-chevron-down"></i>
               </button>
-                <nav class="dropdown-menu absolute hidden bg-white border border-gray-300 rounded-md shadow-lg">
-                  <a class="py-2 px-4 block whitespace-no-wrap hover:bg-gray-100" href="{% url 'faculty_list' %}">Faculty</a>
-                  <a class="py-2 px-4 block whitespace-no-wrap hover:bg-gray-100" href="{% url 'alumni_list' %}">Alumni</a>
-                  <a class="py-2 px-4 block whitespace-no-wrap hover:bg-gray-100" href="{% url 'dev' %}">Developers</a>
+                <nav class="dropdown-menu absolute hidden rounded-md shadow-lg">
+                  <a class="py-2 px-4 block whitespace-no-wrap text-xl font-medium hover:bg-gray-700" href="{% url 'faculty_list' %}">Faculty</a>
+                  <a class="py-2 px-4 block whitespace-no-wrap text-xl font-medium hover:bg-gray-700" href="{% url 'alumni_list' %}">Alumni</a>
+                  <a class="py-2 px-4 block whitespace-no-wrap text-xl font-medium hover:bg-gray-700" href="{% url 'dev' %}">Developers</a>
                 </nav>
               </div>
             
-            <a href="{% url 'login' %}" class="text-xl text-gray-700 font-semibold hover:text-gray-900 hover:underline">Sign In</a>
+            <a href="{% url 'login' %}" style="display: flex;
+            flex-direction: row;
+            align-items: flex-start;
+            padding: 8px 40px;
+            gap: 8px;
+            
+            width: 128px;
+            height: 40px;
+            
+            background: #FFFFFF;
+            color: #0A2640;
+            
+            border: 2px solid #FFFFFF;
+            border-radius: 24px;
+            
+            /* Inside auto layout */
+            
+            flex: none;
+            order: 3;
+            flex-grow: 0;"><h1  style="width: 48px;
+            height: 24px;
+
+            font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+            font-style: normal;
+            font-weight: 700;
+            font-size: 16px;
+            line-height: 24px;
+            /* identical to box height, or 150% */
+
+            display: flex;
+            align-items: center;
+
+            /* Dark Blue */
+
+            color: #0A2640;
+
+
+            /* Inside auto layout */
+
+            flex: none;
+            order: 0;
+            flex-grow: 0;">Login</h1></a>
             {% if request.user.is_authenticated %}
             <a href="{% url 'logout' %}" class="text-xl font-semibold text-red-600 hover:text-red-900">Logout</a>
             {% endif %}
@@ -116,6 +180,7 @@
         </li> 
     </ul>
   </div>
+  
 
 <script>
 // Get the menu button and the mobile menu
