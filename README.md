@@ -1,4 +1,5 @@
 # Departmental Website Documentation
+## link :- https://electrical-4.onrender.com/
 
 Welcome to the documentation for the Departmental Website of the Electrical Engineering Department! This website serves as a platform for the department to showcase its activities, provide information about faculty and students, and facilitate communication among members.
 
@@ -10,7 +11,6 @@ Welcome to the documentation for the Departmental Website of the Electrical Engi
 4. [Installation](#installation)
 5. [Technologies Used](#technologies-used)
 6. [Contribution Guidelines](#contribution-guidelines)
-7. [License](#license)
 
 ## Introduction
 
