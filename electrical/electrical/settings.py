@@ -82,8 +82,8 @@ AUTHENTICATION_BACKENDS = [
 if os.environ.get('DATABASE_URL'): 
 
     DATABASES = {
-        'default' : 'dj_database_url.config(conn_max_age=500)'
-    }
+	"default": dj_database_url.parse(os.environ.get("DATABASE_URL"))
+}
 
 else:
     DATABASES = {
@@ -159,4 +159,5 @@ DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 AUTH_USER_MODEL = "ele.CustomUser"
 LOGIN_REDIRECT_URL = "index"
 LOGOUT_REDIRECT_URL = "login"
+DATABASE_URL = "postgres://electrical_db_user:t5PFNbZT3dZe2LSs4i6z32xk07mIH9Q6@dpg-cnri6hi1hbls73dvs8pg-a.oregon-postgres.render.com/electrical_db"
 
