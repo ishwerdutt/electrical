@@ -1,224 +1,141 @@
-<html>
+<!DOCTYPE html>
+<html lang="en">
+
 <head>
-  
-  <meta charset="UTF-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}Welcome to the Department of Electrical Engineering{% endblock %}</title>
+    <!-- External CSS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/tailwindcss/2.2.19/tailwind.min.css">
+    <link rel="stylesheet" type="text/css"
+        href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.carousel.min.css" />
+    <link rel="stylesheet" type="text/css"
+        href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.theme.default.min.css" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Manrope">
+    <!-- Internal CSS -->
+    <style>
+        /* Body styles */
+        body {
+            background-color: #ffffff; /* White background */
+            font-family: 'Manrope', sans-serif; /* Font family */
+            position: relative;
+            color: #000000; /* Black text color */
+        }
 
-  <script src="https://cdn.tailwindcss.com"></script>  
-    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/slick-carousel/slick/slick.css"/>
-    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/slick-carousel/slick/slick-theme.css"/> 
-    
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.carousel.min.css" />
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.theme.default.min.css" />
-<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Manrope">
+        /* Navbar styles */
+        .navbar {
+            background-color: #000000; /* Black navbar background color */
+            color: #ffffff; /* White navbar text color */
+        }
 
+        .navbar a {
+            color: #ffffff; /* White navbar link color */
+        }
 
-<script src="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/owl.carousel.min.js"></script>
+        /* Responsive styles */
+        @media (max-width: 768px) {
+            /* Mobile menu button */
+            #menu-button {
+                display: block;
+            }
 
-
-  <title>{% block title %}
-
-    {% endblock %}
-  </title>
-  {% block scripts %}
-  
-  {% endblock %}
-
-
-  <style>
-    .dropdown:focus-within .dropdown-menu {
-    display: block;
-  }
-  
-.dropdown-menu {
-  position: absolute;
-  z-index: 2;
-}
-
-   body {
-  background-color:#0A2640; /* dark blue color */
-  position: relative;
-}
-
-body::before {
-  content: "";
-  stroke: none;
-  position: absolute;
-  top: 0;
-  right: 0;
-  width: 500px;
-height: 500px;
-  background: rgba(28, 61, 91, 0.49); /* skyblue color */
-  border-radius: 0 0 0 100%;
-  pointer-events: none; /* added rule to make links accessible */
-  
-}
-
-
-  </style>
+            /* Hide desktop menu */
+            .hidden {
+                display: none !important;
+            }
+        }
+    </style>
 </head>
 
 <body>
-  <!-- Content goes here -->
-  <div class="container">
-  <div class="text-4xl font-bold text-center text-white">
-
-      <nav class="container  mx-auto md:px-3 py-3 navbar p-6">
-        <div class="flex items-center justify-between">
-          <div class="text-black hidden md:flex">
-            <img src="\media\images\nith_logo.jpeg" alt="Developer 1" class="rounded-full h-10 w-auto mx-3">
-            
-              <a href="{% url 'index' %}" class="text-xl text-white font-monorope mt-1">Department of Electrical Engineering</a>
-          </div>
-  
-          <div class="flex items-center space-x-3 md:space-x-4 hidden md:flex">
-            <a href="{% url 'acedemics' %}" class="text-xl text-white hover:text-gray-200 font-medium">Academics</a>
-            <a href="{% url 'labs' %}" class="text-xl text-white hover:text-gray-200 font-medium">Labs</a>
-            <a href="{% url 'research' %}" class="text-xl text-white hover:text-gray-200 font-medium">Research</a>
-            <a href="{% url 'faculty_posts' %}" class="text-xl text-white hover:text-gray-200 font-medium">Articles</a>
-            <!--<a class="text-xl text-gray-700 font-semibold hover:text-gray-900 hover:underline" href="{% url 'guides' %}">Guides</a>-->
-           
-            <div class="dropdown">
-              <button class="text-xl text-white hover:text-gray-200 font-medium">
-                People <i class="fas fa-chevron-down"></i>
-              </button>
-                <nav class="dropdown-menu absolute hidden rounded-md shadow-lg">
-                  <a class="py-2 px-4 block whitespace-no-wrap text-xl font-medium hover:bg-gray-700" href="{% url 'faculty_list' %}">Faculty</a>
-                  <a class="py-2 px-4 block whitespace-no-wrap text-xl font-medium hover:bg-gray-700" href="{% url 'alumni_list' %}">Alumni</a>
-                  <a class="py-2 px-4 block whitespace-no-wrap text-xl font-medium hover:bg-gray-700" href="{% url 'dev' %}">Developers</a>
-                </nav>
-              </div>
-            
-            <a href="{% url 'login' %}" style="display: flex;
-            flex-direction: row;
-            align-items: flex-start;
-            padding: 8px 40px;
-            gap: 8px;
-            
-            width: 128px;
-            height: 40px;
-            
-            background: #FFFFFF;
-            color: #0A2640;
-            
-            border: 2px solid #FFFFFF;
-            border-radius: 24px;
-            
-            /* Inside auto layout */
-            
-            flex: none;
-            order: 3;
-            flex-grow: 0;">
-            <h1  style="width: 48px;
-            height: 24px;
-
-            font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
-            font-style: normal;
-            font-weight: 700;
-            font-size: 16px;
-            line-height: 24px;
-            /* identical to box height, or 150% */
-
-            display: flex;
-            align-items: center;
-
-            /* Dark Blue */
-
-            color: #0A2640;
-
-
-            /* Inside auto layout */
-
-            flex: none;
-            order: 0;
-            flex-grow: 0;">Login</h1></a>
-            {% if request.user.is_authenticated %}
-            <a href="{% url 'logout' %}" class="text-xl font-semibold text-red-600 hover:text-red-900">Logout</a>
-            {% endif %}
-            {% if request.user.is_authenticated %}
-            <a href="{% url 'user_profile' username=user.username  %}" class="text-xl text-green-600 font-bold hover:text-green-900">Profile</a>
-            {% endif %}
-          </div>
+    <!-- Navbar -->
+    <nav class="navbar p-6">
+        <div class="container mx-auto flex justify-between items-center">
+            <div class="flex items-center">
+                <img src="\media\images\nith_logo.jpeg" alt="NITH Logo" class="rounded-full h-10 w-auto mx-3">
+                <a href="{% url 'index' %}" class="text-xl font-bold">Department of Electrical Engineering</a>
+            </div>
+            <!-- Mobile menu button -->
+            <button id="menu-button" class="text-white focus:outline-none md:hidden" aria-expanded="true"
+                aria-label="Toggle navigation">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                    stroke-linejoin="round" class="h-6 w-6">
+                    <path d="M4 6h16M4 12h16M4 18h16"></path>
+                </svg>
+            </button>
+            <!-- Desktop menu -->
+            <div class="hidden md:flex space-x-4">
+                <a href="{% url 'acedemics' %}" class="text-xl hover:text-gray-200">Academics</a>
+                <a href="{% url 'labs' %}" class="text-xl hover:text-gray-200">Labs</a>
+                <a href="{% url 'research' %}" class="text-xl hover:text-gray-200">Research</a>
+                <a href="{% url 'faculty_posts' %}" class="text-xl hover:text-gray-200">Articles</a>
+                <div class="dropdown">
+                    <button class="text-xl hover:text-gray-200">People <i class="fas fa-chevron-down"></i></button>
+                    <nav class="dropdown-menu hidden">
+                        <a href="{% url 'faculty_list' %}" class="block">Faculty</a>
+                        <a href="{% url 'alumni_list' %}" class="block">Alumni</a>
+                        <a href="{% url 'dev' %}" class="block">Developers</a>
+                    </nav>
+                </div>
+                <a href="{% url 'login' %}" class="text-xl hover:text-gray-200">Login</a>
+                {% if request.user.is_authenticated %}
+                <a href="{% url 'logout' %}" class="text-xl text-red-600 hover:text-red-900">Logout</a>
+                <a href="{% url 'user_profile' username=user.username  %}"
+                    class="text-xl text-green-600 hover:text-green-900">Profile</a>
+                {% endif %}
+            </div>
         </div>
-      </nav>
+    </nav>
+    <!-- Mobile menu -->
+    <div id="mobile-menu" class="md:hidden hidden">
+        <ul class="p-4 space-y-2">
+            <li><a href="{% url 'index' %}" class="text-xl font-bold">EE</a></li>
+            <li><a href="{% url 'acedemics' %}" class="block text-xl text-gray-700 hover:text-gray-900">Academics</a>
+            </li>
+            <li><a href="{% url 'labs' %}" class="block text-xl text-gray-700 hover:text-gray-900"></a></li>
+            <li><a href="{% url 'research' %}" class="text-xl text-gray-700 hover:text-gray-900">Research</a></li>
+            <li><a href="{% url 'faculty_posts' %}" class="text-xl text-gray-700 hover:text-gray-900">Articles</a></li>
+            <li>
+                <div class="dropdown">
+                    <button class="text-xl text-gray-700 hover:text-gray-900 hover:underline">People <i
+                            class="fas fa-chevron-down"></i></button>
+                    <nav class="dropdown-menu absolute hidden bg-white border border-gray-300 rounded-md shadow-lg">
+                        <a href="{% url 'faculty_list' %}" class="block">Faculty</a>
+                        <a href="{% url 'alumni_list' %}" class="block">Alumni</a>
+                        <a href="{% url 'dev' %}" class="block">Developers</a>
+                    </nav>
+                </div>
+            </li>
+            <li><a href="{% url 'login' %}" class="text-xl text-gray-700 hover:text-gray-900">Sign In</a></li>
+            {% if request.user.is_authenticated %}
+            <li><a href="{% url 'logout' %}" class="text-xl text-red-700 hover:text-red-900">Logout</a></li>
+            {% endif %}
+        </ul>
     </div>
-      <div class="md:hidden absolute right-4">
-        
-        <button id="menu-button" class="text-black focus:outline-none" aria-expanded="true" aria-label="Toggle navigation">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="h-6 w-6"><path d="M4 6h16M4 12h16M4 18h16"></path></svg>
-        </button>
-      </div>
-  <!-- Mobile menu -->
-  <div id="mobile-menu" class="md:hidden flex justify-center">
-    <ul class="p-4 space-y-2">
-      <li><a href="{% url 'index' %}" class="text-xl font-bold">EE</a></li>
-      <li><a href="{% url 'acedemics' %}" class="block text-xl text-gray-700 hover:text-gray-900">Academics</a></li>
-      <li><a href="{% url 'labs' %}" class="block text-xl text-gray-700 hover:text-gray-900"></a></li>
 
-      
+    <!-- Content -->
+    <div class="container mx-auto">
+        {% block content %}
+        <!-- Content goes here -->
+        {% endblock %}
+    </div>
 
-      <li><a href="{% url 'research' %}" class="text-xl text-gray-700 hover:text-gray-900">Research</a></li>
-        <li><a href="{% url 'faculty_posts' %}" class="text-xl text-gray-700 hover:text-gray-900">Articles</a></li>
-        <li> <a class="text-xl text-gray-700 hover:text-gray-900" href="{% url 'guides' %}">Guides</a></li>
-      
-        <div class="dropdown">
-          <button class="text-xl text-gray-700 hover:text-gray-900 hover:underline rounded-md py-2 ">
-            People <i class="fas fa-chevron-down"></i>
-          </button>
-            <nav class="dropdown-menu absolute hidden bg-white border border-gray-300 rounded-md shadow-lg">
-              <a class="py-2 px-4 block whitespace-no-wrap hover:bg-gray-100" href="{% url 'faculty_list' %}">Faculty</a>
-              <a class="py-2 px-4 block whitespace-no-wrap hover:bg-gray-100" href="{% url 'alumni_list' %}">Alumni</a>
-              <a class="py-2 px-4 block whitespace-no-wrap hover:bg-gray-100" href="{% url 'dev' %}">Developers</a>
-            </nav>
-          </div>
-        <li><a href="{% url 'login' %}" class="text-xl text-gray-700 hover:text-gray-900">Sign In</a> </li> 
-        <li>
-          {% if request.user.is_authenticated %}
-          <a href="{% url 'logout' %}" class="text-xl text-red-700 hover:text-red-900">Logout</a>
-          {% endif %}
-         
-        </li> 
-    </ul>
-  </div>
-  </div>
+    <!-- JavaScript -->
+    <script>
+        // Get the menu button and the mobile menu
+        const menuButton = document.getElementById("menu-button");
+        const mobileMenu = document.getElementById("mobile-menu");
 
-<script>
-// Get the menu button and the mobile menu
-const menuButton = document.getElementById("menu-button");
-const mobileMenu = document.getElementById("mobile-menu");
+        // Add a click event listener to the menu button
+        menuButton.addEventListener("click", function () {
+            // Toggle the aria-expanded attribute
+            let expanded = this.getAttribute("aria-expanded") === "true";
+            this.setAttribute("aria-expanded", !expanded);
 
-// Add a click event listener to the menu button
-menuButton.addEventListener("click", function() {
-  // Toggle the aria-expanded attribute
-  let expanded = this.getAttribute("aria-expanded") === "true";
-  this.setAttribute("aria-expanded", !expanded);
+            // Toggle the visibility of the mobile menu
+            mobileMenu.classList.toggle("hidden");
+        });
+    </script>
+</body>
 
-  // Toggle the visibility of the mobile menu
-  mobileMenu.classList.toggle("hidden");
-});
-</script>
-<script>
-$(document).mousemove(function(event) {
-  var mouseX = event.pageX;
-  var mouseY = event.pageY;
-  var gradientX = (mouseX / $(window).width()) * 100;
-  var gradientY = (mouseY / $(window).height()) * 100;
-  $('.bg-gradient-to-r').css('--gradient-x', gradientX + '%');
-  $('.bg-gradient-to-r').css('--gradient-y', gradientY + '%');
-});
-
-</script>  
-   
-
-    {% block content %}
-
-    {% endblock %}
-
-    
-  
-  </body> 
-
-
-</script>
 </html>
